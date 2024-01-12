@@ -7,13 +7,15 @@ import { useEffect, useState } from "react";
 import Warn from "../component/Warn";
 import CourseItem from "../component/CourseItem";
 import ButtonChoose from "./ButtonChoose";
+import Rechart from "./Rechart";
+
 
 let listItems;
 
 function CourseListPage() {
   const [items, setItems] = useState([]);
   const [keyword, setKeyword] = useState("");
-  const [isInit, setIsInit]=useState(true);
+  const [isInit, setIsInit] = useState(true);
 
   const handleKeywordChange = (e) => {
     setKeyword(e.target.value);
@@ -39,10 +41,7 @@ function CourseListPage() {
   }, []);
 
   return (
-    <ListPage
-      variant="catalog"
-      title="진료비 상세 내역조회"
-    >
+    <ListPage variant="catalog" title="진료비 상세 내역조회">
       <form className={searchBarStyles.form} onSubmit={handleSubmit}>
         <input
           name="keyword"
@@ -56,7 +55,11 @@ function CourseListPage() {
       </form>
 
       <div>
-        <ButtonChoose /> 
+        <ButtonChoose />
+      </div>
+
+      <div style={{ width: 1000, height: 800 }}>        
+      <Rechart />
       </div>
 
       {items.length === 0 && !isInit ? (
