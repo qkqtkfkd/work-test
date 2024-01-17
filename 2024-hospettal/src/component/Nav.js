@@ -26,6 +26,12 @@ function Nav() {
               카탈로그
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/myPage" style={getLinkStyle}>
+              마이페이지
+            </NavLink>
+            
+          </li>
         </ul>
         
       </Container>

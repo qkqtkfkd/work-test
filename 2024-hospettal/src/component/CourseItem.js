@@ -4,7 +4,7 @@ import styles from "./CourseItem.module.css";
 // import getCourseColor from "../utils/getCourseColor";
 import { Link } from "react-router-dom";
 
-const DIFFICULTY = ["입문", "초급", "중급", "고급", "-"];
+const DIFFICULTY = ["전국평균가", "최고가", "최저가"];
 
 function CourseItem({ course }) {
   

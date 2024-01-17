@@ -3,11 +3,13 @@ import styles from "./MedicalList.module.css";
 import searchBarStyles from "../component/SearchBar.module.css";
 import searchIcon from "../assets/search.svg";
 import { getDatas } from "../api/Firebase";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Warn from "../component/Warn";
 import CourseItem from "../component/CourseItem";
-import ButtonChoose from "./ButtonChoose";
+import Button from "./Button";
 import Rechart from "./Rechart";
+import styled from "styled-components";
+import SearchCarousel from "./SearchCarousel";
 
 
 let listItems;
@@ -35,10 +37,11 @@ function CourseListPage() {
     setItems(items);
     setIsInit(false);
   };
-
   useEffect(() => {
     handleLoad();
   }, []);
+
+
 
   return (
     <ListPage variant="catalog" title="진료비 상세 내역조회">
@@ -54,12 +57,17 @@ function CourseListPage() {
         </button>
       </form>
 
-      <div>
-        <ButtonChoose />
+      <div className="btnChoice">
+        <Button className="gps-BTN">현위치 </Button>
+        <Button className="add-BTN">주소 선택 </Button>
       </div>
 
-      <div style={{ width: 1000, height: 800 }}>        
-      <Rechart />
+      <div style={{ width: 300, height: 300 }}>
+        <Rechart />
+      </div>
+
+      <div className={SearchCarousel}>  
+
       </div>
 
       {items.length === 0 && !isInit ? (
