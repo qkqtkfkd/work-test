@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Button from "../component/Button";
-import ReservationList from "./M-List/ReservationList";
+import ReservationList from "./My-List/ReservationList";
 import "./MyPage.css";
 
-function MyPage() {
+function Reservation() {
   return (
-    <div className="container">
+    <div className="containerBox">
       <h1>예약 목록 확인</h1>
       <ReservationList />
       <div className="retouch-a">
@@ -17,4 +17,4 @@ function MyPage() {
   );
 }
 
-export default MyPage;
+export default Reservation;

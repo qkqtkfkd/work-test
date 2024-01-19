@@ -1,15 +1,24 @@
-import styled from "styled-components";
-import Button from "../component/Button";
-import Guardian from "./Guardian";
+import SideBar from "./SideBar.js";
+import { Outlet } from 'react-router-dom';
+import "./MyPage.css";
+import { styled } from 'styled-components';
+import Guardian from './Guardian';
 
-const Navigation = styled.nav`
-  min-width: 200px;
-  padding-right: 20px;
-`;
+const Container=styled.div`
+width: 100%;
+background-color: #f8ebd8;
+display: flex;
 
-function MyPage({ children }) {
-  return <Navigation>{children}</Navigation>;
+`
+
+function MyPage() {
+  return (
+    <Container>
+      <SideBar />
+      <Outlet/>
+      {/* <Guardian /> */}
+    </Container>
+  );
 }
-
 
 export default MyPage;

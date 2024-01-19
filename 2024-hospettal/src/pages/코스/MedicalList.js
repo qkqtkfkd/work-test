@@ -1,4 +1,4 @@
-import ListPage from "../component/ListPage";
+import ListPage from "../../component/ListPage";
 import Rechart from "./Rechart";
 
 

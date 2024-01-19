@@ -4,7 +4,7 @@ import "./MyPage.css";
 
 function Guardian() {
   return (
-    <div className="container">
+    <div className="containerBox">
 
         <h1>보호자 정보 관리</h1>
 
