@@ -6,7 +6,7 @@ import styles from "./Footer.module.css";
 
 function Footer() {
   return (
-    <div className={styles.footer}>
+    <div>
       <Container>
         <ul className={styles.links}>
           <li>DWOS 소개</li>

@@ -1,51 +1,62 @@
 .container {
-  width: 400px;
+  width: 70%;
   margin: 40px auto;
   background-color: #f8ebd8;
   font-family: Pretendard;
   color: #000000;
-  font-size: 12px;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
+  display: flex;
 }
 
 h1 {
-  display: flex;
   align-items: end;
   justify-content: end;
+  display: flex;
+  padding: 2rem 0 0 0;
 }
 
 .infoBox {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  padding: 2rem 0;
+}
+
+.container2 {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
   align-items: center;
+  border-bottom: 1px solid #d9d9d9;
+
 }
 
 label {
   font-weight: 600;
-  /* margin-bottom: 16px; */
-  padding: 1.1rem 0;
+  margin-left: 3rem;
+  padding: 1.5rem 0;
 }
 
 input {
-  /* margin-bottom: 16px; */
   border: none;
-  /* border-color: #f8ebd8; */
-  /* border-bottom: 2px solid; */
   outline: none;
-  padding: 1.1rem 0;
+  background-color: #f8ebd8;
+  padding: 1.5rem 0;
 }
 
-#button {
-  padding: 2px 10px;
+.retouch {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.retouch.a {
+  align-items: center;
+  /* justify-content: center; */
+  display: flex;
 }
 
 #correction {
-  display: block;
-  padding: 10px 30px;
-  margin: 5rem;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  padding: 10px 50px;
+  margin: 5rem 0;
 }
