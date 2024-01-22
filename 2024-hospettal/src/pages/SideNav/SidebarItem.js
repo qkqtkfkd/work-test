@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 function SidebarItem({ menu }) {
   return (
@@ -7,5 +8,6 @@ function SidebarItem({ menu }) {
     </div>
   );
 }
+
 
 export default SidebarItem;

@@ -1,11 +1,11 @@
-.common-table {
+.common_table {
   width: 100%;
   margin: 0 auto;
   text-align: center;
   border-spacing: 0;
 }
 
-.common-table-header-column {
+.common_table_header_column {
   border-bottom: 2px solid #ff8b50;
   border-top: 2px solid #ff8b50;
   padding: 0;
@@ -14,11 +14,11 @@
   font-weight: bold;
 }
 
-.common-table-row {
+.common_table_row {
   /* border-bottom: 1px solid #ff8b50; */
 }
 
-.common-table-column {
+.common_table_column {
   padding: 1.5rem 0;
   border-bottom: 2px solid #ff8b50;
 }

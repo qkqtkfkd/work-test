@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './CommonTable.module.css';
 
 const CommonTableRow = ({ children }) => {
   return (
-    <tr className="common-table-row">
+    <tr className={styles.common_table_row}>
       {
         children
       }

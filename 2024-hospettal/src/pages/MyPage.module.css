@@ -50,14 +50,14 @@ input {
   display: flex;
 }
 
-.retouch.a {
+.retouch_a {
   align-items: center;
   /* justify-content: center; */
   display: flex;
 }
 
-#correction {
+.correction {
   display: flex;
   padding: 10px 50px;
-  margin: 5rem 0;
+  margin: 4.5rem 0;
 }

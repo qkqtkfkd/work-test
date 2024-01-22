@@ -6,8 +6,13 @@ import { styled } from "styled-components";
 
 import MyPage from "./pages/MyPage";
 import SideBar from "./pages/SideBar";
-import Guardian from "./pages/Guardian";
-import Reservation from "./pages/Reservation";
+import Guardian from "./pages/Guardian.js";
+import Reservation from "./pages/Reservation.js";
+import Writing from "./pages/Writing.js";
+import Review from "./pages/Review.js";
+import Inquiry from './pages/Inquiry';
+import SentMessage from './pages/SentMessage';
+import MessageReceived from './pages/MessageReceived';
 
 function Main() {
   return (
@@ -21,6 +26,13 @@ function Main() {
           <Route path="myPage" element={<MyPage />}>
             <Route path="guardian" element={<Guardian />} />
             <Route path="reservation" element={<Reservation />} />
+            
+            <Route path="writing" element={<Writing />} />
+            <Route path="review" element={<Review />} />
+            <Route path="inquiry" element={<Inquiry />} />
+            
+            <Route path="MessageReceived" element={<MessageReceived />} />
+            <Route path="SentMessage" element={<SentMessage />} />
           </Route>
         </Route>
       </Routes>

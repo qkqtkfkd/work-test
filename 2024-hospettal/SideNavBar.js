@@ -2,7 +2,6 @@ import SideNav from "./SideNav/SideNav";
 import NavList from "./SideNav/SideNavList";
 import NavItem from "./SideNav/SideNavItem";
 import NavLink from "./SideNav/SideNavLink";
-import NavSeparator from "./SideNav/SideNavSeparator";
 
 function isActive(path) {
     return window.location.pathname.startsWith(path);
@@ -13,46 +12,50 @@ function isActive(path) {
       <SideNav>
         <NavList>
           <NavItem>
-            <NavLink to="/" active={isActive("/")}>
-              Home
+            <NavLink to="/myPage/guardian" active={isActive("/myPage/guardian")}>
+            보호자 정보관리
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to="/about" active={isActive("/about")}>
-              About
+            <NavLink to="/myPage/mypet" active={isActive("/myPage/mypet")}>
+            마이펫 관리
             </NavLink>
           </NavItem>
-          <NavItem disabled>
-            <NavLink>Coming Soon</NavLink>
-          </NavItem>
+          <NavItem to="/myPage/reservation" active={isActive("/myPage/reservation")}>
+            <NavLink>내 예약 목록</NavLink>
+          </NavItem>  
   
-          <NavSeparator />
   
           <NavItem>
-            <NavLink to="/back/python" active={isActive("/back")}>
-              Backend
+            <NavLink to="/myPage/writing" active={isActive("/myPage/writing")}>
+            게시글 관리
             </NavLink>
-            <NavList expanded={isActive("/back")}>
+            <NavList expanded={isActive("/myPage/writing")}>
               <NavItem>
-                <NavLink to="/back/python" active={isActive("/back/python")}>
-                  Python
+                <NavLink to="/myPage/writing" active={isActive("/myPage/writing")}>
+                내가 쓴 글
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/back/java" active={isActive("/back/java")}>
-                  Java
+                <NavLink to="/myPage/review" active={isActive("/myPage/review")}>
+                내가 쓴 후기
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/myPage/inquiry" active={isActive("/myPage/inquiry")}>
+                문의내역
                 </NavLink>
               </NavItem>
             </NavList>
           </NavItem>
   
           <NavItem>
-            <NavLink to="/front/html" active={isActive("/front")}>
-              Frontend
+            <NavLink to="/myPage/messageReceived" active={isActive("/myPage/messageReceived")}>
+            메세지 관리
             </NavLink>
-            <NavList expanded={isActive("/front")}>
+            <NavList expanded={isActive("/myPage/messageReceived")}>
               <NavItem>
-                <NavLink to="/front/html" active={isActive("/front/html")}>
+                <NavLink to="/myPage/messageReceived" active={isActive("/myPage/messageReceived")}>
                   HTML
                 </NavLink>
               </NavItem>
@@ -87,11 +90,11 @@ function isActive(path) {
             </NavList>
           </NavItem>
   
-          <NavSeparator />
+
   
           <NavItem>
             <NavLink to="/help" active={isActive("/help")}>
-              Help
+            포인트 관리
             </NavLink>
           </NavItem>
         </NavList>

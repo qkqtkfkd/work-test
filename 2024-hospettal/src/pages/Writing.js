@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import Button from "../component/Button";
-import ReservationList from "./My-List/ReservationList";
+import WritingList from "./My-List/WritingList";
 import styles from "./MyPage.module.css";
 
-function Reservation() {
+function Writing() {
   return (
     <div className={styles.containerBox}>
-      <h1>예약 목록 확인</h1>
-      <ReservationList />
-      <div className={styles.retouch_a}>
+      <h1>내가 쓴 글</h1>
+      <WritingList />
+      <div className={styles.retoucha}>
         <Button type="submit" className={styles.correction}>
-          취소하기
+          삭제
         </Button>
       </div>
     </div>
   );
 }
 
-export default Reservation;
+export default Writing;
