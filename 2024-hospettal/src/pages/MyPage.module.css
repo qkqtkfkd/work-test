@@ -53,11 +53,6 @@ input {
 .retouch_a {
   align-items: center;
   /* justify-content: center; */
-  display: flex;
+  /* display: flex; */
 }
 
-.correction {
-  display: flex;
-  padding: 10px 50px;
-  margin: 4.5rem 0;
-}

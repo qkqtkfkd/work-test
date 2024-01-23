@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./component/App.js";
 import MedicalList from "./pages/코스/MedicalList.js";
 // import CoursePage from './pages/CoursePage';

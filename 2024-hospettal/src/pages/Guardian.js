@@ -28,14 +28,14 @@ function Guardian() {
         <div className={styles.container2}>
           <label htmlFor="withdrawal">회원탈퇴</label>
           <div>
-            <Button type="submit" id="withdrawal">
+            <Button type="submit" style={{padding:"4px 20px", margin:"0"}}>
               탈퇴하기
             </Button>
           </div>
         </div>
       </from>
       <div className={styles.retouch}>
-        <Button type="submit" className={styles.correction}>
+        <Button type="submit" >
           수정하기
         </Button>
       </div>
