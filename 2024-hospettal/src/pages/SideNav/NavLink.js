@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
 
+function isCurrent(to) {
+  return window.location.pathname.startsWith(to);
+}
+
 const Link = styled.a`
   display: block;
   margin: 0 calc(20px * -1);
@@ -33,7 +37,6 @@ const Link = styled.a`
 function SideNavLink(children, to, active) {
   return (
     <Link
-      href={to} //이동시킬 페이지
       active={active} //주소의 활성화 여부
       // aria-current={isCurrent(to) ? "page" : null} //현재 페이지
     >
