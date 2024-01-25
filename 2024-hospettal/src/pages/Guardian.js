@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import Button from '../component/Button';
+import Button from "../component/Button";
 import styles from "./MyPage.module.css";
 
 function Guardian() {
   return (
     <div className={styles.containerBox}>
-
-        <h1>보호자 정보 관리</h1>
+      <h1>보호자 정보 관리</h1>
 
       <from className={styles.infoBox}>
         <div className={styles.container2}>
@@ -28,20 +27,23 @@ function Guardian() {
         <div className={styles.container2}>
           <label htmlFor="withdrawal">회원탈퇴</label>
           <div>
-            <Button type="submit" style={{width:'7rem',
-  height:'2.3rem', margin:"0"}}>
+            <Button
+              type="submit"
+              style={{ width: "7rem", height: "2.3rem", margin: "0" }}
+            >
               탈퇴하기
             </Button>
           </div>
         </div>
       </from>
       <div className={styles.retouch}>
-        <Button type="submit" >
-          수정하기
-        </Button>
+        <Button type="submit">수정하기</Button>
       </div>
     </div>
   );
 }
 
 export default Guardian;
+
+
+

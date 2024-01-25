@@ -27,10 +27,9 @@
   text-decoration: none;
 }
 
-.sideMenus > a:hover,
-.sideMenus > a:active {
+.sideMenus > a:hover{
   font-weight: bold;
-  border-bottom: 2px solid #000;
+  /* border-bottom: 2px solid #000; */
 }
 
 
@@ -54,16 +53,11 @@
   text-decoration: none;
 }
 
-.postMenus:hover,
-.postMenus:active {
+.postMenus:hover {
   font-weight: 900;
   border-bottom: 2px solid #000;
   display: block;
 }
-
-
-
-
 
 /* ///////////// */
 /* .sidebar-sub2 {

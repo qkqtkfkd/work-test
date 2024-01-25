@@ -9,7 +9,11 @@ function SentMessage() {
       <h1>보낸 메세지</h1>
       <SentMessageList />
       <div className={styles.retouch_a}>
-        <Button type="submit" id="correction">
+        <Button
+          type="submit"
+          id="correction"
+          style={{ margin: "4.5rem 2rem 4.5rem 0" }}
+        >
           쪽지 쓰기
         </Button>
         <Button type="submit" id="correction">

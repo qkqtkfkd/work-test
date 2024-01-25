@@ -27,7 +27,7 @@ function Nav() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/myPage" style={getLinkStyle}>
+            <NavLink to="/myPage/guardian" style={getLinkStyle}>
               마이페이지
             </NavLink>
             

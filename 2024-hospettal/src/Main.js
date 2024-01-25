@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./component/App.js";
 import MedicalList from "./pages/코스/MedicalList.js";
 // import CoursePage from './pages/CoursePage';
@@ -11,29 +11,37 @@ import Guardian from "./pages/Guardian.js";
 import Reservation from "./pages/Reservation.js";
 import Writing from "./pages/Writing.js";
 import Review from "./pages/Review.js";
-import Inquiry from './pages/Inquiry';
-import SentMessage from './pages/SentMessage';
-import MessageReceived from './pages/MessageReceived';
+import Inquiry from "./pages/Inquiry";
+import SentMessage from "./pages/SentMessage";
+import MessageReceived from "./pages/MessageReceived";
+import Point from "./pages/Point";
+import MyPet from "./pages/MyPet";
 
 function Main() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          {/* <Route path="courses">
+          <Route path="courses">
             <Route index element={<MedicalList />} />
-          </Route> */}
+          </Route>
 
           <Route path="myPage" element={<MyPage />}>
             <Route path="guardian" element={<Guardian />} />
+            <Route path="myPet" element={<MyPet />} />
             <Route path="reservation" element={<Reservation />} />
-            
-            <Route path="writing" element={<Writing />} />
-            <Route path="review" element={<Review />} />
-            <Route path="inquiry" element={<Inquiry />} />
-            
-            <Route path="MessageReceived" element={<MessageReceived />} />
-            <Route path="SentMessage" element={<SentMessage />} />
+            <Route path="post1">
+              <Route index element={<Writing />} /> {/* 기본 페이지로 설정 */}
+              <Route path="writing" element={<Writing />} />
+              <Route path="review" element={<Review />} />
+              <Route path="inquiry" element={<Inquiry />} />
+            </Route>
+            <Route path="message1">
+              <Route index element={<MessageReceived />} />
+              <Route path="MessageReceived" element={<MessageReceived />} />
+              <Route path="SentMessage" element={<SentMessage />} />
+            </Route>
+            <Route path="point" element={<Point />} />
           </Route>
         </Route>
       </Routes>

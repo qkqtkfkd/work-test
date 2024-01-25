@@ -14,9 +14,11 @@ h1 {
   align-items: end;
   justify-content: end;
   display: flex;
-  padding: 0.5rem 0 0 0;
+  padding: 1rem 0 ;
 }
 
+
+/* ///Guardian/// */
 .infoBox {
   width: 100%;
   display: grid;
@@ -50,9 +52,13 @@ input {
   display: flex;
 }
 
+/* /////Guardian//// */
+
 .retouch_a {
   align-items: center;
   /* justify-content: center; */
-  /* display: flex; */
+  display: flex;  
 }
+
+
 
