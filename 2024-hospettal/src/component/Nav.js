@@ -13,10 +13,9 @@ function Nav() {
   return (
     <div className={styles.nav}>
       <Container className={styles.container}>
-
         <Link to="/">
           <div className={styles.logo}>
-            <span>호스펫탈</span> 
+            <span>호스펫탈</span>
           </div>
         </Link>
 
@@ -27,13 +26,21 @@ function Nav() {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/404NotFound-Dog" style={getLinkStyle}>
+              404페이지-dog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/404NotFound-Cat" style={getLinkStyle}>
+              404페이지-cat
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/myPage/guardian" style={getLinkStyle}>
               마이페이지
             </NavLink>
-            
           </li>
         </ul>
-        
       </Container>
     </div>
   );

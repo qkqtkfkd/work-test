@@ -1,6 +1,4 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-
 import {
   getFirestore,
   collection,
@@ -20,7 +18,6 @@ import {
   arrayUnion,
   arrayRemove,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
-
 import {
   getStorage,
   ref,
@@ -29,23 +26,20 @@ import {
   deleteObject,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDpsITZpk7yzw3Qi6xUrCGoq1Gcem4Bvz8",
-  authDomain: "dwos-5215a.firebaseapp.com",
-  projectId: "dwos-5215a",
-  storageBucket: "dwos-5215a.appspot.com",
-  messagingSenderId: "504073391958",
-  appId: "1:504073391958:web:05ce6afde03745a02a90f7",
+  apiKey: "AIzaSyARawYxbOyLKnEWMlPSatqIULiZhn5ZDN0",
+  authDomain: "hospetal-f595a.firebaseapp.com",
+  projectId: "hospetal-f595a",
+  storageBucket: "hospetal-f595a.appspot.com",
+  messagingSenderId: "41843789723",
+  appId: "1:41843789723:web:07d3d1aaf16f0bd24b9b3e",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 async function getDatas(collectionName, options) {
-  // throw new Error("에러가 아니라 기능입니다.");
+  // throw new Error("기능");
   // const querySnapshot = await getDocs(collection(db, collectionName));
   let docQuery;
   if (options === undefined) {
@@ -54,13 +48,13 @@ async function getDatas(collectionName, options) {
       docId: doc.id,
       ...doc.data(),
     }));
-
     return result;
   } else if (options.lq === undefined) {
     docQuery = query(
       collection(db, collectionName),
       orderBy(options.order, "desc"),
       limit(options.limit)
+      // asc:오름차 순 (굳이 x) desc: 내림차 순
     );
   } else {
     docQuery = query(
@@ -68,23 +62,33 @@ async function getDatas(collectionName, options) {
       orderBy(options.order, "desc"),
       startAfter(options.lq),
       limit(options.limit)
+      // asc:오름차 순 (굳이 x) desc: 내림차 순
     );
   }
   const querySnapshot = await getDocs(docQuery);
-
-  //쿼리 query
-  //orderBy, limit, startAfter
+  // 쿼리 query
+  // orderBy, limit, startAfter
   const result = querySnapshot.docs;
   const lastQuery = result[result.length - 1];
+  // 1.
+  const reviews = result.map((doc) => ({ docId: doc.id, ...doc.data() }));
 
-  //[snapshot1, snapshot2, 000,snapshot10];
-  //result[0].data();
-  const reviews = result.map((doc) => ({ docId: doc.id, ...doc.data() })); //스프레드 문법
+  // 2.
+  // const tempArr = [];
+  // for (let i = 0; i < result.length - 1; i++) {
+  //   const obj = result[i].data();
+  //   obj.docId = result[i].id;
+  //   tempArr.push(obj);
+  // }
+  // reviews = tempArr;
+
+  // 3.
   // const reviews = result.map((doc) => {
   //   const obj = doc.data();
-  //   obj.dovId = doc.id;
+  //   obj.docId = doc.id;
   //   return obj;
-  // }); -스프레드 문법 해석
+  // });
+
   return { reviews, lastQuery };
 }
 
@@ -99,23 +103,64 @@ async function getData(collectionName, fieldName, condition, value) {
     docId: doc.id,
     ...doc.data(),
   }));
+
   return data.length === 1 ? data[0] : data;
+}
+
+export const getLastId = async () => {
+  try {
+    const querySnapshot = await getDocs(
+      query(collection(db, "member"), orderBy("id", "desc"), limit(1))
+    );
+    const lastDoc = querySnapshot.docs[0];
+
+    return lastDoc.data().id;
+  } catch (error) {
+    console.error("Error in getLastId:", error);
+    throw error;
+  }
+};
+
+const addDatas = async (collectionName, data) => {
+  try {
+    const docRef = await addDoc(collection(db, collectionName), data);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    throw error;
+  }
+};
+
+async function idDatas(collectionName, checkId) {
+  const Snapshot = await getDocs(
+    query(collection(db, collectionName), where("memberId", "==", checkId))
+  );
+  return Snapshot.size;
+}
+
+async function nickDatas(collectionName, nickName) {
+  const Snapshot = await getDocs(
+    query(
+      collection(db, collectionName),
+      where("memberNickName", "==", nickName)
+    )
+  );
+  return Snapshot.size;
 }
 
 async function getMember(values) {
   const { id, password } = values;
+  const docQuery = query(collection(db, "member"), where("memberId", "==", id));
   let message;
   let memberObj = {};
 
-  const docQuery = query(collection(db, "member"), where("id", "==", id));
   const querySnapshot = await getDocs(docQuery);
-
   if (querySnapshot.docs.length !== 0) {
     const memberData = querySnapshot.docs.map((doc) => ({
       docId: doc.id,
       ...doc.data(),
     }))[0];
-    if (memberData.password === password) {
+    if (memberData.password == password) {
       memberObj = memberData;
     } else {
       message = "비밀번호가 일치하지 않습니다.";
@@ -123,60 +168,109 @@ async function getMember(values) {
   } else {
     message = "일치하는 아이디가 없습니다.";
   }
-
   return { memberObj, message };
 }
 
-async function deleteDatas(collectionName, docId, imgUrl) {
-  const storage = getStorage();
+async function findId(memberName, memberMail, memberMail2, memberPhone) {
+  const docQuery = query(
+    collection(db, "member"),
+    where("memberName", "==", memberName),
+    where("memberMail", "==", memberMail),
+    where("memberMail2", "==", memberMail2),
+    where("memberPhone", "==", memberPhone)
+  );
+  const querySnapshot = await getDocs(docQuery);
+  const memberData = querySnapshot.docs.map((doc) => doc.data());
 
-  try {
-    const deleteRef = ref(storage, imgUrl);
-    await deleteObject(deleteRef);
-    await deleteDoc(doc(db, collectionName, docId));
-  } catch (error) {
-    return false;
-  }
-  return true;
-}
-
-async function addDatas(collectionName, formData) {
-  const uuid = crypto.randomUUID();
-  const path = `movie/${uuid}`;
-  const lastId = (await getLastId(collectionName)) + 1;
-  const time = new Date().getTime();
-  // 파일을 저장하고 url 을 받아온다.
-  const url = await uploadImage(path, formData.imgUrl);
-
-  formData.id = lastId;
-  formData.createdAt = time;
-  formData.updatedAt = time;
-  formData.imgUrl = url;
-
-  const result = await addDoc(collection(db, collectionName), formData);
-  const docSnap = await getDoc(result);
-  if (docSnap.exists()) {
-    const review = { docId: docSnap.id, ...docSnap.data() };
-    return { review };
+  if (memberData.length > 0) {
+    const memberId = memberData[0].memberId;
+    return memberId;
+  } else {
+    return "일치하는 회원 정보가 없습니다.";
   }
 }
 
-async function updateDatas(collectionName, docId, updateData, options) {
-  
+// 구분선
+async function changePassword(memberId, newMemberPass) {
+  const docQuery = collection(db, "member");
+  const queryRef = query(docQuery, where("memberId", "==", memberId));
+
+  const querySnapshot = await getDocs(queryRef);
+  const memberDocs = querySnapshot.docs;
+
+  if (memberDocs.length > 0) {
+    const memberDoc = memberDocs[0];
+    const memberRef = doc(db, "member", memberDoc.id);
+    await updateDoc(memberRef, { memberPass: newMemberPass });
+    return "회원 비밀번호가 변경되었습니다.";
+  } else {
+    return "일치하는 회원 정보가 없습니다.";
+  }
+}
+
+async function findPass(
+  memberId,
+  memberName,
+  memberMail,
+  memberMail2,
+  memberPhone,
+  newMemberPass
+) {
+  const docQuery = collection(db, "member");
+  let queryRef = docQuery;
+
+  if (memberId !== undefined) {
+    queryRef = query(queryRef, where("memberId", "==", memberId));
+  }
+  if (memberName !== undefined) {
+    queryRef = query(queryRef, where("memberName", "==", memberName));
+  }
+  if (memberMail !== undefined) {
+    queryRef = query(queryRef, where("memberMail", "==", memberMail));
+  }
+  if (memberMail2 !== undefined) {
+    queryRef = query(queryRef, where("memberMail2", "==", memberMail2));
+  }
+  if (memberPhone !== undefined) {
+    queryRef = query(queryRef, where("memberPhone", "==", memberPhone));
+  }
+
+  const querySnapshot = await getDocs(queryRef);
+  const memberData = querySnapshot.docs.map((doc) => doc.data());
+  console.log(memberData);
+
+  if (memberData.length > 0) {
+    const foundMemberId = memberData[0].memberId;
+    console.log(foundMemberId);
+
+    if (newMemberPass !== undefined) {
+      // 변경된 비밀번호를 changePassword 함수로 전달하여 비밀번호를 업데이트합니다.
+      const result = await changePassword(foundMemberId, newMemberPass);
+      return result;
+    } else {
+      return foundMemberId;
+    }
+  } else {
+    return "일치하는 회원 정보가 없습니다.";
+  }
+}
+// 구분선
+
+async function updateDatas(collectionName, docId, upadateData, options) {
   const docRef = doc(db, collectionName, docId);
   try {
     if (options) {
       if (options.type == "ADD") {
         await updateDoc(docRef, {
-          [options.fieldName]: arrayUnion(updateData),
+          [options.fieldName]: arrayUnion(upadateData),
         });
-      } else if (options.type == "DELETE") {
+      } else if (options.type === "DELETE") {
         await updateDoc(docRef, {
-          [options.fieldName]: arrayRemove(updateData),
+          [options.fieldName]: arrayRemove(upadateData),
         });
       }
     } else {
-      await updateDoc(docRef, updateData);
+      await updateDoc(docRef, upadateData);
     }
     return true;
   } catch (error) {
@@ -184,42 +278,23 @@ async function updateDatas(collectionName, docId, updateData, options) {
   }
 }
 
-async function uploadImage(path, imgFile) {
-  const storage = getStorage();
-  const imageRef = ref(storage, path);
-
-  //File 객체를 스토리지에 저장
-  await uploadBytes(imageRef, imgFile);
-
-  //저장한 File의 url을 받아온다.
-  const url = await getDownloadURL(imageRef);
-  return url;
-}
-
-async function getLastId(collectionName) {
-  const docQuery = query(
-    collection(db, collectionName),
-    orderBy("id", "desc"),
-    limit(1)
-  );
-  const lastDoc = await getDocs(docQuery);
-  const lastId = lastDoc.docs[0].id;
-  return lastId;
-}
-
 export {
   db,
   getDocs,
+  getDoc,
   collection,
   getDatas,
   setDoc,
+  addDatas,
   addDoc,
   doc,
   deleteDoc,
   updateDoc,
-  addDatas,
-  deleteDatas,
   updateDatas,
   getMember,
   getData,
+  idDatas,
+  nickDatas,
+  findId,
+  findPass,
 };

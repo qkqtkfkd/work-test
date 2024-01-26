@@ -1,21 +1,22 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./component/App.js";
-import MedicalList from "./pages/코스/MedicalList.js";
-// import CoursePage from './pages/CoursePage';
+// import MedicalList from "./mypages/코스/MedicalList.js";
 import { styled } from "styled-components";
 
-import MyPage from "./pages/MyPage";
-import SideBar from "./pages/SideBar";
-import Guardian from "./pages/Guardian.js";
-import Reservation from "./pages/Reservation.js";
-import Writing from "./pages/Writing.js";
-import Review from "./pages/Review.js";
-import Inquiry from "./pages/Inquiry";
-import SentMessage from "./pages/SentMessage";
-import MessageReceived from "./pages/MessageReceived";
-import Point from "./pages/Point";
-import MyPet from "./pages/MyPet";
+import MyPage from "./mypages/MyPage";
+import SideBar from "./mypages/SideBar";
+import Guardian from "./mypages/Guardian.js";
+import Reservation from "./mypages/Reservation.js";
+import Writing from "./mypages/Writing.js";
+import Review from "./mypages/Review.js";
+import Inquiry from "./mypages/Inquiry";
+import SentMessage from "./mypages/SentMessage";
+import MessageReceived from "./mypages/MessageReceived";
+import Point from "./mypages/Point";
+import MyPet from "./mypages/MyPet";
+import NotFoundCat from "./notfoundpage/NotFoundCat";
+import NotFoundDog from "./notfoundpage/NotFoundDog";
 
 function Main() {
   return (
@@ -23,10 +24,14 @@ function Main() {
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="courses">
-            <Route index element={<MedicalList />} />
           </Route>
 
+          <Route path="/404NotFound-Cat" element={<NotFoundCat />} />
+          <Route path="/404NotFound-Dog" element={<NotFoundDog />} />
+
+
           <Route path="myPage" element={<MyPage />}>
+            {/* <SideBar /> */}
             <Route path="guardian" element={<Guardian />} />
             <Route path="myPet" element={<MyPet />} />
             <Route path="reservation" element={<Reservation />} />

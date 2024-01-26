@@ -1,39 +1,85 @@
+import { useEffect, useState } from "react";
 import Container from "./Container";
-import facebookIcon from "../assets/facebook.svg";
-import twitterIcon from "../assets/twitter.svg";
-import instagramIcon from "../assets/instagram.svg";
-import styles from "./Footer.module.css";
+import { FiChevronUp } from "react-icons/fi";
+import "./Footer.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
+  const [showInfo, setShowInfo] = useState(false);
+  const [maxHeight, setMaxHeight] = useState(0);
+  const handleIconClick = () => {
+    setShowInfo(!showInfo);
+  };
+
+  useEffect(() => {
+    if (showInfo) {
+      setMaxHeight(50);
+    } else {
+      // setTimeout(() => setMaxHeight(0), 300);
+      setMaxHeight(0);
+    }
+  }, [showInfo]);
+
   return (
-    <div>
+    <div className="footer">
       <Container>
-        <ul className={styles.links}>
-          <li>DWOS 소개</li>
-          <li>개인정보 취급방침</li>
-          <li>사용자 이용약관</li>
-          <li>자주 묻는 질문</li>
+        <ul
+          className="links"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <li>
+            <Link to="customerservice" className="customer-service">
+              <img src="/logo/Logo_footer_w.svg" className="footer-img" />
+            </Link>
+          </li>
+          <li>
+            <span>
+              <Link to="termsofuse" className="terms">
+                이용약관
+              </Link>
+            </span>
+            <span>
+              <Link to="privacypolicy" className="privacy">
+                개인정보처리방침
+              </Link>
+            </span>
+          </li>
         </ul>
-
-        <ul className={styles.info}>
-          <li>(주)DWOS</li>
-          <li>대표 | 홍길동</li>
-          <li>개인정보보호책임자 | 홍길동</li>
-          <li>대표번호 | 080-****-****</li>
-          <li>사업자번호 | ***-****-****</li>
-          <li>통신판매업 | 제****-대전**-****호</li>
-          <li>주소 | 대전광역시 중구 중앙로 121번길</li>
+        <ul className="info">
+          <li style={{ fontFamily: "LibreBaskerville" }}>
+            HOSPETAL{" "}
+            <FiChevronUp
+              style={{
+                transform: `rotate(${showInfo ? 180 : 0}deg)`,
+                transition: "transform 0.3s ease-in-out",
+              }}
+              onClick={handleIconClick}
+            />
+          </li>
         </ul>
-
-        <div className={styles.icons}>
-          <div className={styles.logo}>
-            <span>DW</span> OS
-          </div>
-          <div className={styles.sns}>
-            <img src={facebookIcon} alt="facebook icon" />
-            <img src={twitterIcon} alt="twitter icon" />
-            <img src={instagramIcon} alt="instagram icon" />
-          </div>
+        {showInfo && (
+          <ul
+            className="hidden-info"
+            style={{
+              maxHeight: `${maxHeight}px`,
+              overflow: "hidden",
+              transition: "max-height 0.3s ease-in-out",
+            }}
+          >
+            <li>
+              주식회사 호스펫탈 34838 대전광역시 중구 중앙로121번길 20 (선화동
+              41) 2층 사업자 등록번호 : 1234-56-78910 <br />
+              TEL : 042-123-4567 FAX : 00-1111-2222
+            </li>
+          </ul>
+        )}
+        <ul className="info">
+          <li style={{ fontFamily: "LibreBaskerville", fontSize: "12px" }}>
+            Copyright 2023. Hospetal All rights reserved.
+          </li>
+        </ul>
+        <div>
+          <div></div>
         </div>
       </Container>
     </div>
