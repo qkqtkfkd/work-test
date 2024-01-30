@@ -24,9 +24,9 @@ function NotFound() {
         <GoHomeBtn />
       </div>
 
-      <div>
+      {/* <div>
         <Outlet />
-      </div>
+      </div> */}
 
       <div className={styles.find}>
         <h2 className={styles.h2}>고양이를 찾습니다</h2>
