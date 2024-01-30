@@ -103,7 +103,7 @@ function Profile() {
           <div className={styles.choice}>
             <select className={styles.select2} name="" id="">
               <option value="">선택</option>
-            </select>{" "}
+            </select>{" "}              
             <div>-</div>
             <select className={styles.select2} name="" id="">
               <option value="">선택</option>
