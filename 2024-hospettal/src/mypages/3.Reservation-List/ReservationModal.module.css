@@ -1,0 +1,12 @@
+
+.bookingbody{
+    display: grid;
+    row-gap: 1.5rem;
+    grid-template-rows: 1fr;
+    grid-template-columns: 40%;
+    justify-content: center;
+    /* align-items: center; */
+    justify-items: center;
+    width: 60rem;
+    height: 40rem;
+}

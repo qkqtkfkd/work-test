@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import styles from "./SideBar.module.css";
-import Post from "./Post";
-import Message from "./Message";
+import Post from "./SideBar-Post";
+import Message from "./SideBar-Message";
 
 function getLinkStyle({ isActive }) {
   return {

@@ -6,15 +6,16 @@ import { styled } from "styled-components";
 
 import MyPage from "./mypages/MyPage";
 import SideBar from "./mypages/SideBar";
-import Guardian from "./mypages/Guardian.js";
-import Reservation from "./mypages/Reservation.js";
-import Writing from "./mypages/Writing.js";
-import Review from "./mypages/Review.js";
-import Inquiry from "./mypages/Inquiry";
-import SentMessage from "./mypages/SentMessage";
-import MessageReceived from "./mypages/MessageReceived";
-import Point from "./mypages/Point";
-import MyPet from "./mypages/MyPet";
+import Guardian from "./mypages/1.Guardian-List/Guardian.js";
+import MyPet from "./mypages/2.MyPet-List/MyPet";
+import Reservation from "./mypages/3.Reservation-List/Reservation.js";
+import Writing from "./mypages/4.Posting-List/Writing.js";
+import Review from "./mypages/4.Posting-List/Review.js";
+import Inquiry from "./mypages/4.Posting-List/Inquiry";
+import SentMessage from "./mypages/5.Message-List/SentMessage";
+import MessageReceived from "./mypages/5.Message-List/MessageReceived";
+import Point from "./mypages/6.Point-List/Point";
+
 import NotFoundCat from "./notfoundpage/NotFoundCat";
 import NotFoundDog from "./notfoundpage/NotFoundDog";
 

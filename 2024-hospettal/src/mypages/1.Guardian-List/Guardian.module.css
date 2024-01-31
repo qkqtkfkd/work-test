@@ -24,3 +24,9 @@
     background-color: #f8ebd8;
     padding: 1.5rem 0;
   }
+
+  .scroll-locked {
+    overflow: hidden;
+  }
+
+

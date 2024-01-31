@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import Button from "../component/Button";
-import ReviewList from "./My-List/ReviewList";
-import styles from "./MyPage.module.css";
+import Button from "../../component/Button";
+import InquiryList from "./InquiryList";
+import styles from "../MyPage.module.css";
 
-function Review() {
+function Inquiry() {
   return (
     <div className={styles.containerBox}>
-      <h1 className={styles.h1}>내가 쓴 후기</h1>
-      <ReviewList />
+      <h1 className={styles.h1}>문의내역</h1>
+      <InquiryList />
       <div className={styles.retouch_a}>
         <Button type="submit" className={styles.correction}>
           삭제
@@ -17,4 +17,4 @@ function Review() {
   );
 }
 
-export default Review;
+export default Inquiry;

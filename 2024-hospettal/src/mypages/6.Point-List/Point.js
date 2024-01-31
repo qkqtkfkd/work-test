@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import Button from "../component/Button";
-import PointList from "./My-List/PointList";
-import styles from "./MyPage.module.css";
+import Button from "../../component/Button";
+import PointList from "./PointList";
+import styles from "../MyPage.module.css";
+import style from "../Modal.module.css";
+import { ReactComponent as Close} from "../../assets/icon/icon-close_w.svg";
 
 function Point() {
   return (

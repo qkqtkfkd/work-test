@@ -1,9 +1,7 @@
 import styled from "styled-components";
-// import styles from "./Button.module.css";
-// import classNames from "classnames";
+
 
 const Button = styled.button`
-  // padding: 10px 50px;
   width:12rem;
   height:3.5rem;
   border: 2px solid #ff9b50;
@@ -19,6 +17,7 @@ const Button = styled.button`
   &:active {
     background-color: #ff9b50;
     color: #ffffff;
+    font-weight: 700;
   }`;
 
 

@@ -16,17 +16,6 @@
 }
 
 /* 캐러셀-슬라이드 */
-
-.popol {
-  /* margin: inherit; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-
 /* ////////라인/////// */
 
 .line {
