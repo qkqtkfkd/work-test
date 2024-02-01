@@ -2,12 +2,18 @@
   box-sizing: border-box;
   word-break: keep-all;
 }
+
 html {
   overflow-y: scroll;
 }
+
 body {
   margin: 0;
   padding: 0;
+}
+
+p{
+  margin: 0;
 }
 
 .app-container {

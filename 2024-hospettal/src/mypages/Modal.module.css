@@ -22,7 +22,7 @@
     background-color: white;
     z-index: 999;  
     display: grid;
-    grid-template-rows: 1fr 10fr;
+    grid-template-rows: 50px 1fr;
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
@@ -43,6 +43,11 @@
     position: relative;
 }
 
+.btnbox{
+    display: flex;
+    margin: 0.5rem 0;
+    gap: 2rem;
+}
 
 .closebtn{
     position: absolute;
@@ -55,3 +60,7 @@
     background-color: transparent;
     border: none;
 }
+
+
+
+
