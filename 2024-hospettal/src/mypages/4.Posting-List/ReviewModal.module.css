@@ -1,0 +1,45 @@
+.ReviewModalheader {
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  color:#ffc26f ;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;    
+  border-bottom: 2px solid #ffc26f;
+}
+
+.ReviewModalbody {
+  width: 100%;
+  height: 100%;
+  padding: 4rem;
+  display: grid;
+  grid-template-rows: 2fr 2fr 2fr 0.5fr;
+  /* justify-content: center; */
+}
+
+.StarRating{}
+
+.Comment{
+}
+
+.note {
+  width: 100%;
+  height: 80%;
+  border: 1px solid #d9d9d9;
+  outline: none;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.CommentPoto{
+  display: grid;
+  grid-template-rows: 0.5fr 5fr;
+}
+
+
+.picture{
+  font-size: 14px;
+  font-weight: 900;
+}

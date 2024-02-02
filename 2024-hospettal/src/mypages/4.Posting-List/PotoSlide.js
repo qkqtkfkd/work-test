@@ -5,9 +5,9 @@ import { useState } from "react";
 
 function PotoSlide() {
   const pets = [
-    { name: "아이이름" },
-    { name: "냥냥" },
-    { name: "댕댕" },
+    { name: " " },
+    { name: " " },
+    { name: " " },
   ];
 
   const [current, setCurrent] = useState(0);

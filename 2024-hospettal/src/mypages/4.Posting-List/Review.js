@@ -6,6 +6,7 @@ import style from "../Modal.module.css";
 import { ReactComponent as Close} from "../../assets/icon/icon-close_w.svg";
 import { useEffect, useState } from "react";
 import Overlay from "../Overlay"
+import ReviewModal from "./ReviewModal";
 
 function Review() {
   
@@ -32,7 +33,7 @@ function Review() {
       </div>
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <aaa setModalOpen={setModalOpen} />}
+      {modalOpen && <ReviewModal setModalOpen={setModalOpen} />}
     </div>
   );
 }

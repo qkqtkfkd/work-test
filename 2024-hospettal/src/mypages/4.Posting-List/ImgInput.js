@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import closeImg from "../../assets/icon/icon-close_w.svg";
-import style from"./FileInput.css";
+import "./ImgInput.css";
 
-function FileInput() {
+function ImgInput() {
   const inputRef = useRef();
   const [preview, setPreview] = useState();
 
   const handleChange = (e) => {
-    const file = e.target.files[0];  
+    const file = e.target.files[0];
 
     if (file) {
       const reader = new FileReader();
@@ -20,38 +19,24 @@ function FileInput() {
     }
   };
 
-  const handleClearClick = () => {
-    const inputNode = inputRef.current;
-    if (!inputNode) return;
-
-    inputNode.value = "";
-    setPreview(null);
-  };
-
   return (
-    <div className="FileInput">
+    <div className="ImgInput">
       {preview && (
         <img
-          className="FileInput-preview selected"
+          className="ImgInput-preview selected"
           src={preview}
           alt="이미지 미리보기"
         />
       )}
       <input
-        className="FileInput-hidden-overlay"
+        className="ImgInput-hidden-overlay"
         type="file"
         accept="image/png, image/jpeg"
         onChange={handleChange}
         ref={inputRef}
-      />
-
-      {preview && (
-        <button className="FileInput-clear-button" onClick={handleClearClick}>
-          <img src={closeImg} />
-        </button>
-      )}
+      />     
     </div>
   );
 }
 
-export default FileInput;
+export default ImgInput;

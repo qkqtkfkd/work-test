@@ -20,10 +20,13 @@ function MyPet() {
         <div className={style.profil}>
           <div className={style.album}>
             <form className={style.poto}>
+
               <FileInput />
               <span className={style.register}>마이펫 사진등록하기</span>
+              
             </form>
           </div>
+
           <Profile />
 
           <div className={styles.retouch}>

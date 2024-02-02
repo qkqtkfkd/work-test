@@ -1,23 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import closeImg from "../../assets/icon/icon-close_w.svg";
-import style from"./FileInput.css";
+import "./FileInput.css";
 
-function FileInput() {
+
+function FileInput({ name, onChange, value, initialPreview }) {
+
   const inputRef = useRef();
-  const [preview, setPreview] = useState();
+  const [preview, setPreview] = useState(initialPreview);
 
   const handleChange = (e) => {
-    const file = e.target.files[0];  
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setPreview(null);
-    }
+    const nextFile = e.target.files[0];
+    onChange(name, nextFile);
   };
 
   const handleClearClick = () => {
@@ -25,8 +18,19 @@ function FileInput() {
     if (!inputNode) return;
 
     inputNode.value = "";
-    setPreview(null);
+    onChange(name, null);
   };
+
+  useEffect(() => {
+    if (!value) return;
+    const nextPreview = URL.createObjectURL(value);
+    setPreview(nextPreview);
+
+    return () => {
+      setPreview(initialPreview);
+      URL.revokeObjectURL(nextPreview);
+    };
+  }, [value, initialPreview]);
 
   return (
     <div className="FileInput">
@@ -44,10 +48,9 @@ function FileInput() {
         onChange={handleChange}
         ref={inputRef}
       />
-
-      {preview && (
+      {value && (
         <button className="FileInput-clear-button" onClick={handleClearClick}>
-          <img src={closeImg} />
+          <img src={closeImg} alt="선택해제" />
         </button>
       )}
     </div>

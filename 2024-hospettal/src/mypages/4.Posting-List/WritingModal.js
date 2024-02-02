@@ -5,12 +5,10 @@ import { ReactComponent as Reply } from "../../assets/icon/icon-reply.svg";
 import styless from "./WritingModal.module.css";
 import PotoSlide from "./PotoSlide";
 import { useEffect, useState } from "react";
-import Overlay from "../Overlay"
-import CorrectionModal from "./CorrectionModal"
-
+import Overlay from "../Overlay";
+import CorrectionModal from "./CorrectionModal";
 
 function WritingModal({ setModalOpen }) {
-
   let [modalInOpen, setModalInOpen] = useState(false);
 
   useEffect(() => {
@@ -20,7 +18,6 @@ function WritingModal({ setModalOpen }) {
       document.body.style.overflow = "auto";
     }
   }, [modalInOpen]);
-
 
   return (
     <div className={style.modalbox} style={{ width: "70rem", height: "45rem" }}>
@@ -38,16 +35,16 @@ function WritingModal({ setModalOpen }) {
 
       <div className={styless.writingbody}>
         <div className={styless.potoSlide}>
-
-        <PotoSlide/>
-
+          <PotoSlide />
         </div>
 
         <div className={styless.post}>
           <from className={styless.wordtext}>
             <div className={styless.head}>
               <figure className={styless.figure}></figure>
-              <p style={{fontSize:'15px'}}><strong>땡이는 귀여워</strong></p>
+              <p style={{ fontSize: "15px" }}>
+                <strong>땡이는 귀여워</strong>
+              </p>
               <div className={styless.ico}>
                 <Like className={styless.icon} />
                 <p>7</p>
@@ -76,8 +73,10 @@ function WritingModal({ setModalOpen }) {
             <div className={styless.next}>
               <figure className={styless.figure}></figure>
               <div>
-              <p><strong>강자자</strong></p>
-              <p>저 나눔 받고 싶어요!</p>
+                <p>
+                  <strong>강자자</strong>
+                </p>
+                <p>저 나눔 받고 싶어요!</p>
               </div>
               <span className={styless.date}>2024-01-12</span>
             </div>
@@ -88,8 +87,6 @@ function WritingModal({ setModalOpen }) {
               className={style.button2}
               type="submit"
               style={{ width: "13rem" }}
-
-
               onClick={() => {
                 setModalInOpen(true);
               }}
