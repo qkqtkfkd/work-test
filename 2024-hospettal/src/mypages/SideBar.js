@@ -31,7 +31,7 @@ function SideBar() {
   };
 
   return (
-    <side className={styles.side}>
+    <div className={styles.side}>
       <menu className={styles.menu}>
         <div className={styles.sideMenus}>
           <NavLink
@@ -103,7 +103,7 @@ function SideBar() {
           </NavLink>
         </div>
       </menu>
-    </side>
+    </div>
   );
 }
 

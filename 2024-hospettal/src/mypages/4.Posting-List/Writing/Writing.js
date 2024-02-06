@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import Button from "../../component/Button";
-import MessageReceivedList from "./MessageReceivedList";
-import styles from "../MyPage.module.css";
-import style from "../Modal.module.css";
-import { ReactComponent as Close} from "../../assets/icon/icon-close_w.svg";
+import Button from "../../../component/Button";
+import WritingList from "./WritingList";
+import styles from "../../MyPage.module.css";
 import { useEffect, useState } from "react";
-import Overlay from "../Overlay"
-import MessageModal from "./MessageModal"
+import Overlay from "../../Overlay"
+import WritingModal from "./WritingModal"
 
-function MessageReceived() {
-  
+function Writing() {
+
   let [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -22,9 +20,9 @@ function MessageReceived() {
 
   return (
     <div className={styles.containerBox}>
-      <h1 className={styles.h1}>받은 메세지</h1>
-      <MessageReceivedList />
-      <div className={styles.retouch_a}>
+      <h1 className={styles.h1}>내가 쓴 글</h1>
+      <WritingList />
+      <div className={styles.retoucha}>
         <Button type="submit" className={styles.correction} onClick={() => {
                 setModalOpen(true);
               }}>
@@ -33,9 +31,9 @@ function MessageReceived() {
       </div>
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <MessageModal setModalOpen={setModalOpen} />}
+      {modalOpen && <WritingModal setModalOpen={setModalOpen} />}
     </div>
   );
 }
 
-export default MessageReceived;
+export default Writing;

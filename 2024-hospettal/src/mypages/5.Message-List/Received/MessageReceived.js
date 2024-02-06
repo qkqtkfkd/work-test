@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import Button from "../../component/Button";
-import ReviewList from "./ReviewList";
-import styles from "../MyPage.module.css";
-import style from "../Modal.module.css";
-import { ReactComponent as Close} from "../../assets/icon/icon-close_w.svg";
+import Button from "../../../component/Button";
+import MessageReceivedList from "./MessageReceivedList";
+import styles from "../../MyPage.module.css";
+import style from "../../Modal.module.css";
+import { ReactComponent as Close} from "../../../assets/icon/icon-close_w.svg";
 import { useEffect, useState } from "react";
-import Overlay from "../Overlay"
-import ReviewModal from "./ReviewModal";
+import Overlay from "../../Overlay"
+import MessageModal from "../MessageModal"
 
-function Review() {
+function MessageReceived() {
   
   let [modalOpen, setModalOpen] = useState(false);
 
@@ -22,8 +22,8 @@ function Review() {
 
   return (
     <div className={styles.containerBox}>
-      <h1 className={styles.h1}>내가 쓴 후기</h1>
-      <ReviewList />
+      <h1 className={styles.h1}>받은 메세지</h1>
+      <MessageReceivedList />
       <div className={styles.retouch_a}>
         <Button type="submit" className={styles.correction} onClick={() => {
                 setModalOpen(true);
@@ -33,9 +33,9 @@ function Review() {
       </div>
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <ReviewModal setModalOpen={setModalOpen} />}
+      {modalOpen && <MessageModal setModalOpen={setModalOpen} />}
     </div>
   );
 }
 
-export default Review;
+export default MessageReceived;

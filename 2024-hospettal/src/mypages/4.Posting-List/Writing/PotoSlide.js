@@ -1,6 +1,6 @@
 import style from "./PotoSlide.module.css";
-import { ReactComponent as PrevArrow } from "../../assets/icon/chevron_right_w_1.svg";
-import { ReactComponent as NextArrow } from "../../assets/icon/chevron_right_w.svg";
+import { ReactComponent as PrevArrow } from "../../../assets/icon/chevron_right_w_1.svg";
+import { ReactComponent as NextArrow } from "../../../assets/icon/chevron_right_w.svg";
 import { useState } from "react";
 
 function PotoSlide() {

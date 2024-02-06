@@ -1,11 +1,11 @@
-import style from "../Modal.module.css";
-import { ReactComponent as Close } from "../../assets/icon/icon-close_w.svg";
-import { ReactComponent as Like } from "../../assets/icon/icon-like.svg";
-import { ReactComponent as Reply } from "../../assets/icon/icon-reply.svg";
+import style from "../../Modal.module.css";
+import { ReactComponent as Close } from "../../../assets/icon/icon-close_w.svg";
+import { ReactComponent as Like } from "../../../assets/icon/icon-like.svg";
+import { ReactComponent as Reply } from "../../../assets/icon/icon-reply.svg";
 import styless from "./WritingModal.module.css";
 import PotoSlide from "./PotoSlide";
 import { useEffect, useState } from "react";
-import Overlay from "../Overlay";
+import Overlay from "../../Overlay";
 import CorrectionModal from "./CorrectionModal";
 
 function WritingModal({ setModalOpen }) {

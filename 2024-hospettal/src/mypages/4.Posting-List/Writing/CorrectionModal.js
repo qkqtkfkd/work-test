@@ -1,8 +1,7 @@
-import style from "../Modal.module.css";
-import { ReactComponent as Close } from "../../assets/icon/icon-close_w.svg";
-import IMG from "../../assets/gallery/꿀팁_02.png";
+import style from "../../Modal.module.css";
+import { ReactComponent as Close } from "../../../assets/icon/icon-close_w.svg";
+import IMG from "../../../assets/gallery/꿀팁_02.png";
 import styless from "./CorrectionModal.module.css";
-import ImgInput from "./ImgInput";
 
 function CorrectionModal({ setModalInOpen }) {
   return (

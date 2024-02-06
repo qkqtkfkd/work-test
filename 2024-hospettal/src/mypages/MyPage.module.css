@@ -5,7 +5,8 @@
 
 .containerBox {
   width: 100%;
-  margin: 40px 10rem 40px 40%;
+  margin: 40px 10rem 40px 32%;
+  padding: 1rem;
   font-family: Pretendard;
   color: #000000;
   justify-content: center;

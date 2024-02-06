@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import Button from "../../component/Button";
-import WritingList from "./WritingList";
-import styles from "../MyPage.module.css";
-import style from "../Modal.module.css";
-import { ReactComponent as Close} from "../../assets/icon/icon-close_w.svg";
+import Button from "../../../component/Button";
+import ReviewList from "./ReviewList";
+import styles from "../../MyPage.module.css";
 import { useEffect, useState } from "react";
-import Overlay from "../Overlay"
-import WritingModal from "./WritingModal"
+import Overlay from "../../Overlay"
+import ReviewModal from "./ReviewModal";
 
-function Writing() {
-
+function Review() {
+  
   let [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -22,9 +20,9 @@ function Writing() {
 
   return (
     <div className={styles.containerBox}>
-      <h1 className={styles.h1}>내가 쓴 글</h1>
-      <WritingList />
-      <div className={styles.retoucha}>
+      <h1 className={styles.h1}>내가 쓴 후기</h1>
+      <ReviewList />
+      <div className={styles.retouch_a}>
         <Button type="submit" className={styles.correction} onClick={() => {
                 setModalOpen(true);
               }}>
@@ -33,9 +31,9 @@ function Writing() {
       </div>
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <WritingModal setModalOpen={setModalOpen} />}
+      {modalOpen && <ReviewModal setModalOpen={setModalOpen} />}
     </div>
   );
 }
 
-export default Writing;
+export default Review;

@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Button from "../../component/Button";
+import Button from "../../../component/Button";
 import SentMessageList from "./SentMessageList";
-import styles from "../MyPage.module.css";
-import style from "../Modal.module.css";
-import { ReactComponent as Close} from "../../assets/icon/icon-close_w.svg";
+import styles from "../../MyPage.module.css";
+import style from "../../Modal.module.css";
+import { ReactComponent as Close} from "../../../assets/icon/icon-close_w.svg";
 import { useEffect, useState } from "react";
-import Overlay from "../Overlay"
+import Overlay from "../../Overlay"
 import SentModal from "./SentModal"
 import NoteModal from "./NoteModal"
 

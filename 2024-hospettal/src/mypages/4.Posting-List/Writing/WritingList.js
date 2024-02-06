@@ -1,7 +1,7 @@
 import React from "react";
-import CommonTable from "../table/CommonTable";
-import CommonTableColumn from "../table/CommonTableColumn";
-import CommonTableRow from "../table/CommonTableRow";
+import CommonTable from "../../table/CommonTable";
+import CommonTableColumn from "../../table/CommonTableColumn";
+import CommonTableRow from "../../table/CommonTableRow";
 
 const WritingList = (props) => {
   return (

@@ -1,11 +1,32 @@
-import style from "../Modal.module.css";
-import { ReactComponent as Close } from "../../assets/icon/icon-close_ff9b50.svg";
+import style from "../../Modal.module.css";
+import { ReactComponent as Close } from "../../../assets/icon/icon-close_ff9b50.svg";
 import styless from "./ReviewModal.module.css";
 import { useEffect, useState } from "react";
 import PictureSlide from "./PictureSlide";
 import CheckStars from "./CheckStars";
 
-function ReviewModal({ setModalOpen }) {
+const INITIAL_VALUES = {
+  rating: 0,
+  content: "",
+};
+
+function ReviewModal({ setModalOpen, initialValues = INITIAL_VALUES }) {
+  const [values, setValues] = useState(initialValues);
+
+  const handleChange = (name, value) => {
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
+  };
+
+  const [ratingNum, setRatingNum] = useState(0);
+  const updateRatingNum = () => {
+    const ratingNum = values.rating * 1;
+    setRatingNum(ratingNum.toFixed(1));
+  };
+
+  useEffect(() => {
+    updateRatingNum();
+  }, [values.rating]);
+
   return (
     <div className={style.modalbox} style={{ width: "60rem", height: "50rem" }}>
       <div className={styless.ReviewModalheader}>
@@ -22,8 +43,16 @@ function ReviewModal({ setModalOpen }) {
 
       <div className={styless.ReviewModalbody}>
         <div className={styless.StarRating}>
-          <CheckStars />
-          <div></div>
+          <CheckStars
+            type="number"
+            name="rating"
+            value={values.rating}
+            onChange={handleChange}
+          />
+          <div className={styless.score}>
+            <div className={styless.totalScore}>총 점</div>
+            <h4 className={styless.num}>{ratingNum}점</h4>
+          </div>
         </div>
 
         <div className={styless.Comment}>
@@ -42,9 +71,8 @@ function ReviewModal({ setModalOpen }) {
 
         <div className={styless.CommentPoto}>
           <p className={styless.picture}>후기사진 추가</p>
-          
-            <PictureSlide />
-          </div>
+
+          <PictureSlide />
         </div>
 
         <div className={style.btnbox}>
@@ -70,6 +98,7 @@ function ReviewModal({ setModalOpen }) {
           </button>
         </div>
       </div>
+    </div>
   );
 }
 

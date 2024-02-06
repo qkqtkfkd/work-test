@@ -7,16 +7,16 @@ const Container = styled.div`
 width: 100%;
 background-color: #f8ebd8;
 display: flex;
-}`;
+`;
 
 function MyPage() {
   return (
-    <>
+    <div className="ContainerOne">
       <SideBar />
       <Container>
         <Outlet />
       </Container>
-    </>
+    </div>
   );
 }
 

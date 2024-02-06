@@ -1,24 +1,28 @@
 import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
-import "./App.font.css"
+import "./App.font.css";
 import Footer from "./Footer";
 import "./App.css";
+import { classNames } from "classnames";
 
-const appContainer = {
-  display: "flex",
-  flexDirection: "column",
-  minHeight: "100vh",
-  backgroundColor: "#F8EBD8",
-};
 
-function App() {   
+function App() {
   return (
-    <div style={appContainer}>
-      <Nav/>
+    <div
+      className="AppContainer"
+      style={{
+        display: "flex",
+        width: "100%",
+        flexDirection: "column",
+        minHeight: "100vh",
+        backgroundColor: "#F8EBD8",
+      }}
+    >
+      <Nav />
       <div>
         <Outlet />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -1,34 +1,40 @@
-import styled from "styled-components";
-import Button from "../../component/Button";
 import PointList from "./PointList";
 import styles from "../MyPage.module.css";
-import style from "../Modal.module.css";
-import { ReactComponent as Close} from "../../assets/icon/icon-close_w.svg";
+// import style from "../Modal.module.css";
+// import { ReactComponent as Close } from "../../assets/icon/icon-close_w.svg";
+import styleA from "./Point.module.css";
+import Shop from "./Shop";
+
 
 function Point() {
+
+  
   return (
     <div className={styles.containerBox}>
-      <h1>포인트 샵</h1>
+      <h1 className={styles.h1} style={{ borderBottom: "2px solid #ff8b50" }}>
+        포인트 샵
+      </h1>
+
       {/* ////////////////////////////////////// */}
-      <div>
+      <div className={styleA.pointbody}>
         <div>
-          <p>
-            보유포인트 <span>3000</span>냥
+          <p className={styleA.pointsHeld}>
+            보유포인트 <span className={styleA.score}>3000냥</span>
           </p>
         </div>
+
         <div>
-          <img />
-          <p>고구마져키 50g (6개입)</p>
-          <h4>15,000냥</h4>
-          <div className={styles.retouch_a}>
-            <Button type="submit" className="correction">
-              교환하기
-            </Button>
-          </div>
+          <Shop />
         </div>
       </div>
 
       <PointList />
+      <p className={styleA.annotation}>
+        *기프트콘은 이벤트와 재고량에 따라 수시로 변경될 수 있습니다.
+      </p>
+      <div>pagination</div>
+
+
     </div>
   );
 }
