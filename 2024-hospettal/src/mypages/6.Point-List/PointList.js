@@ -4,7 +4,7 @@ import CommonTableColumn from "../table/CommonTableColumn";
 import CommonTableRow from "../table/CommonTableRow";
 import styled from "styled-components";
 
-const InquiryList = (props) => {
+const PointList = (props) => {
   return (
     <>
       <CommonTable headersName={["번호", "내역", "적립금", "사용", "날짜"]}>
@@ -31,4 +31,4 @@ const InquiryList = (props) => {
     </>
   );
 };
-export default InquiryList;
+export default PointList;

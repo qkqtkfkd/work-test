@@ -1,47 +1,41 @@
-export function Pagination({
-    postsNum,
-    postsPerPage,
-    setCurrentPage,
-    currentPage
-  }) {
-    const pageList = [];
-    const totalPages = Math.ceil(postsNum / postsPerPage);
-  
-    for (let i = 1; i <= totalPages; i++) {
-      pageList.push(i);
-    }
-  
-    const goToNextPage = () => {
-      setCurrentPage(currentPage + 1);
-    };
-  
-    const goToPrevPage = () => {
-      setCurrentPage(currentPage - 1);
-    };
-  
-    if (totalPages === 1) {
-      return null;
-    }
-  
-    return (
-      <div>
-        <button onClick={goToPrevPage} disabled={currentPage === 1}>
-          prev
-        </button>
-  
-        {pageList.map((page) => (
+import styled from "styled-components";
+import style from "./pagination.module.css";
+
+function Pagination({ total, limit, page, setPage }) {
+  const numPages = Math.ceil(total / limit);
+
+  return (
+    <nav className={style.nav}>
+      <button
+        className={style.button}
+        onClick={() => setPage(page - 1)}
+        disabled={page === 1}
+      >
+        &lt;
+      </button>
+      
+      {Array(numPages)
+        .fill()
+        .map((_, i) => (
           <button
-            key={page}
-            onClick={() => setCurrentPage(page)}
-            className={currentPage === page ? "active" : ""}
+            className={style.button}
+            key={i + 1}
+            onClick={() => setPage(i + 1)}
+            aria-current={page === i + 1 ? "page" : undefined}
           >
-            {page}
+            {i + 1}
           </button>
         ))}
-  
-        <button onClick={goToNextPage} disabled={currentPage === pageList.length}>
-          next
-        </button>
-      </div>
-    );
-  }
+
+      <button
+        className={style.button}
+        onClick={() => setPage(page + 1)}
+        disabled={page === numPages}
+      >
+        &gt;
+      </button>
+    </nav>
+  );
+}
+
+export default Pagination;

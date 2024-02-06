@@ -4,7 +4,7 @@ import { ReactComponent as NextArrow } from "../../../assets/icon/chevron_right_
 import { useState, useRef } from "react";
 
 function PictureSlide() {
-  const [pets, setPets] = useState([
+  const pets = [
     {
       id: 1,
       label: "Img",
@@ -17,13 +17,7 @@ function PictureSlide() {
       alt: "주희",
       url: require("../../../assets/gallery/갤러리_02.jpg"),
     },
-    {
-      id: 3,
-      label: "Img",
-      alt: "영희",
-      url: require("../../../assets/gallery/갤러리_01.jpg"),
-    },
-  ]);
+  ];
 
   const [current, setCurrent] = useState(0);
   const [preview, setPreview] = useState();
@@ -47,31 +41,51 @@ function PictureSlide() {
 
   const translateXValue = -current * 126;
 
-  const handleClick = (id,index) => {
-    inputRef.current.click();
-  }; 
-
-  const handleImageChange = (e, id, index) => {
+  const handleImageChange = (e, id) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const imageUrl = reader.result;
-      console.log(`Pet ID: ${id}, New Image: ${imageUrl}`);
-      const updatedPets = [...pets];
-      const petIndex = updatedPets.findIndex((pet) => pet.id === id);
-      if (petIndex !== -1) {
-        updatedPets[petIndex].url = imageUrl;
-        setPets(updatedPets);
-      }
-    };
 
     if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const updatedPets = pets.map((pet) => {
+          if (pet.id === id) {
+            return {
+              ...pet,
+              url: reader.result,
+            };
+          } else {
+            return pet; // 선택한 ID와 일치하지 않는 이미지는 변경하지 않음
+          }
+        });
+        setPreview(reader.result);
+        setCurrent(0); // 이미지 변경 후 첫 번째 이미지로 이동
+      };
       reader.readAsDataURL(file);
+    } else {
+      setPreview(null);
     }
   };
 
 
+  // const handleImageChange = (e, id, index) => {
+  //   const file = e.target.files[0];
+  //   const reader = new FileReader();
+
+  //   reader.onload = () => {
+  //     const imageUrl = reader.result;
+  //     console.log(`Pet ID: ${id}, New Image: ${imageUrl}`);
+  //     const updatedPets = [...pets];
+  //     const petIndex = updatedPets.findIndex((pet) => pet.id === id);
+  //     if (petIndex !== -1) {
+  //       updatedPets[petIndex].url = imageUrl;
+  //       setPets(updatedPets);
+  //     }
+  //   };
+
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   return (
     <div className={style.commentSlide}>
@@ -80,7 +94,11 @@ function PictureSlide() {
           className={style.slide}
           style={{ transform: `translateX(${translateXValue}px)` }}
         >
-          {pets.map((pet, index) => {               
+          {pets.map((pet) => {
+            const handleClick = (id) => {
+              inputRef.current.click();
+            };
+
             return (
               <div
                 className={style.petPopol}
@@ -89,7 +107,7 @@ function PictureSlide() {
               >
                 {preview && (
                   <img
-                    className="InputPreview selected"
+                    className="FileInput-preview selected"
                     src={preview}
                     alt="이미지 미리보기"
                   />
@@ -97,14 +115,14 @@ function PictureSlide() {
                 <span
                   className={style.retouch}
                   onClick={() => {
-                    handleClick(pet.id, index);
+                    handleClick(pet.id);
                   }}
                 >
                   수정하기
                   <input
                     type="file"
                     accept="image/png, image/jpeg"
-                    onChange={(e) => handleImageChange(e, pet.id, index)}
+                    onChange={(e) => handleImageChange(e, pet.id)}
                     ref={inputRef}
                     style={{ display: "none" }}
                   />
