@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import styles from "./Profile.module.css";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Button1 = styled.button`
-  padding: 10px 50px;
   border: 2px solid #d9d9d9;
   color: #d9d9d9;
   background-color: #fff;
@@ -11,9 +12,19 @@ const Button1 = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 7rem;
+  width: 7.5rem;
   height: 2.3rem;
   margin: 0;
+`;
+
+const SDatePicker = styled(DatePicker)`
+  border: 1px solid #d9d9d9;
+  outline: none;
+  background-color: #fff;
+  padding: 0.5rem;
+  color: #000;
+  width: 100%;
+  margin-right: 0.5rem;
 `;
 
 function Profile() {
@@ -22,6 +33,8 @@ function Profile() {
   const handleButtonClick = (buttonId) => {
     setSelectedButton(buttonId);
   };
+
+  const [startDate, setStartDate] = useState(new Date());
 
   return (
     <div className="profilList">
@@ -101,17 +114,10 @@ function Profile() {
             생년월일
           </label>
           <div className={styles.choice}>
-            <select className={styles.select2} name="" id="">
-              <option value="">선택</option>
-            </select>{" "}              
-            <div>-</div>
-            <select className={styles.select2} name="" id="">
-              <option value="">선택</option>
-            </select>{" "}
-            <div>-</div>
-            <select className={styles.select2} name="" id="">
-              <option value="">선택</option>
-            </select>{" "}
+            <SDatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+            />
           </div>
         </div>
 
@@ -124,7 +130,7 @@ function Profile() {
               type="submit"
               style={
                 selectedButton === "completed"
-                  ? { backgroundColor: "#ff9b50", color:"#fff" }
+                  ? { backgroundColor: "#ff9b50", color: "#fff" }
                   : {}
               }
               onClick={() => handleButtonClick("completed")}
@@ -136,7 +142,7 @@ function Profile() {
               type="submit"
               style={
                 selectedButton === "incomplete"
-                  ? { backgroundColor: "#ff9b50", color:"#fff"  }
+                  ? { backgroundColor: "#ff9b50", color: "#fff" }
                   : {}
               }
               onClick={() => handleButtonClick("incomplete")}

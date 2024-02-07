@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CommonTable from "../table/CommonTable";
 import CommonTableColumn from "../table/CommonTableColumn";
 import CommonTableRow from "../table/CommonTableRow";
+import { postList } from "./Data";
+import Overlay from "../Overlay";
+import ReservationModal from "./ReservationModal";
 
 const ReservationList = (props) => {
+  const [dataList, setDataList] = useState([]);
+
+  useEffect(() => {
+    setDataList(postList);
+  }, []);
+
+  // ///////////////////
+  let [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modalOpen]);
+
+  // ///////////////
+
   return (
     <>
       <CommonTable
@@ -17,30 +39,33 @@ const ReservationList = (props) => {
           "예약일자",
         ]}
       >
-        <CommonTableRow>
+        {dataList
+          ? dataList.map((item, index) => {
+              return (
+        <CommonTableRow key={index}>
           <CommonTableColumn>
-            <input type="checkbox" />
+            <input type={item.checkbox} />
           </CommonTableColumn>
-          <CommonTableColumn>01</CommonTableColumn>
-          <CommonTableColumn>00-000-000</CommonTableColumn>
-          <CommonTableColumn>예약완료</CommonTableColumn>
-          <CommonTableColumn>댕댕이</CommonTableColumn>
-          <CommonTableColumn>동의보감 병원</CommonTableColumn>
-          <CommonTableColumn>2024-01-16</CommonTableColumn>
-        </CommonTableRow>
-
-        <CommonTableRow>
+          <CommonTableColumn>{item.no}</CommonTableColumn>
+          <CommonTableColumn>{item.reservationNumber}</CommonTableColumn>
+          <CommonTableColumn>{item.condition}</CommonTableColumn>
           <CommonTableColumn>
-            <input type="checkbox" />
-          </CommonTableColumn>
-          <CommonTableColumn>02</CommonTableColumn>
-          <CommonTableColumn>00-000-000</CommonTableColumn>
-          <CommonTableColumn>예약중</CommonTableColumn>
-          <CommonTableColumn>냥냥이</CommonTableColumn>
-          <CommonTableColumn>한 병원</CommonTableColumn>
-          <CommonTableColumn>2024-01-16</CommonTableColumn>
+          <p
+                      onClick={() => {
+                        setModalOpen(true);
+                      }}
+                    >
+                      {item.petName}
+                    </p></CommonTableColumn>
+          <CommonTableColumn>{item.hospital}</CommonTableColumn>
+          <CommonTableColumn>{item.reservationDate}</CommonTableColumn>
         </CommonTableRow>
+        );
+      })
+    : ""}
       </CommonTable>
+      {modalOpen && <Overlay modalOpen={modalOpen} />}
+      {modalOpen && <ReservationModal setModalOpen={setModalOpen} />}
     </>
   );
 };

@@ -57,7 +57,7 @@ function WritingModal({ setModalOpen }) {
 
             <div className={styless.wordBox}>
               <div className={styless.wordTitle}>
-                <h4>냥이들 츄르 나눔합니다!!</h4>
+                <p className={styless.title_p}>냥이들 츄르 나눔합니다!!</p>
                 <span className={styless.date}>2024-01-12</span>
               </div>
               <p className={styless.word_p}>

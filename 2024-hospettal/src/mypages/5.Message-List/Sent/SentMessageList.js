@@ -1,31 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CommonTable from "../../table/CommonTable";
 import CommonTableColumn from "../../table/CommonTableColumn";
 import CommonTableRow from "../../table/CommonTableRow";
+import { postList } from "./Data";
+import Overlay from "../../Overlay";
+import SentModal from "./SentModal";
 
 const SentMessageList = (props) => {
+  const [dataList, setDataList] = useState([]);
+
+  useEffect(() => {
+    setDataList(postList);
+  }, []);
+
+  // ///////////////////
+  let [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modalOpen]);
+
+
+  // ///////////////
+
   return (
     <>
-      <CommonTable
-        headersName={[
-          "",
-          "번호",
-          "닉네임",
-          "쪽지내용",
-          "날짜"
-        ]}
-      >
-        <CommonTableRow>
-          <CommonTableColumn>
-            <input type="checkbox" />
-          </CommonTableColumn>
-          <CommonTableColumn>01</CommonTableColumn>
-          <CommonTableColumn>강자자</CommonTableColumn>
-          <CommonTableColumn>애기 장난감이 너무 맘에 드는데 혹시 어디서 구매하셨나요?</CommonTableColumn>
-          <CommonTableColumn>2024-01-16</CommonTableColumn>
-        </CommonTableRow>
-  
+      <CommonTable headersName={["", "번호", "닉네임", "쪽지내용", "날짜"]}>
+        {dataList
+          ? dataList.map((item, index) => {
+              return (
+                <CommonTableRow key={index}>
+                  <CommonTableColumn>
+                    <input type={item.checkbox} />
+                  </CommonTableColumn>
+                  <CommonTableColumn>{item.no}</CommonTableColumn>
+                  <CommonTableColumn>{item.witer}</CommonTableColumn>
+                  <CommonTableColumn>
+                    <p
+                      onClick={() => {
+                        setModalOpen(true);                        
+                      }}
+                    >
+                      {item.title}
+                    </p>
+                  </CommonTableColumn>
+                  <CommonTableColumn>{item.createDate}</CommonTableColumn>
+                </CommonTableRow>
+              );
+            })
+          : ""}
       </CommonTable>
+
+      {modalOpen && <Overlay modalOpen={modalOpen} />}
+      {modalOpen && <SentModal setModalOpen={setModalOpen} />}
     </>
   );
 };

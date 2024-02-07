@@ -1,7 +1,7 @@
   
   .carousel {    
     width: 476px;
-    height: 580px;
+    height: inherit;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -17,7 +17,7 @@
 
   .petPopol {
     width: 476px;
-    height: 580px;
+    height: inherit;
     display: grid;
     grid-template-rows: 1fr 2fr;
     grid-template-columns: 1fr;

@@ -17,7 +17,6 @@ function Guardian() {
     }
   }, [modalOpen]);
 
-
   const [guardianInfo, setGuardianInfo] = useState({
     name: "",
     phoneNumber: "",
@@ -33,9 +32,10 @@ function Guardian() {
     }));
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 폼 데이터를 처리하는 로직 추가
   };
 
   const inputFields = [
@@ -105,7 +105,7 @@ function Guardian() {
         </div>
       </form>
       <div className={styles.retouch}>
-        <Button type="submit">수정하기</Button>
+        <Button type="submit" onClick={handleSubmit}>수정하기</Button>
       </div>
       
       {modalOpen && <Overlay modalOpen={modalOpen} />}

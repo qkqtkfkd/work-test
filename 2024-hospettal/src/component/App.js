@@ -1,29 +1,31 @@
-import { Outlet } from "react-router-dom";
+import { useCallback, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
-import "./App.font.css";
 import Footer from "./Footer";
-import "./App.css";
-import { classNames } from "classnames";
-
+import AuthContext from "./Account/AuthContext";
+import "./App.font.css";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = useCallback(() => {
+    setIsLogin(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLogin(false);
+    navigate("/");
+  }, [navigate]);
+
   return (
-    <div
-      className="AppContainer"
-      style={{
-        display: "flex",
-        width: "100%",
-        flexDirection: "column",
-        minHeight: "100vh",
-        backgroundColor: "#F8EBD8",
-      }}
-    >
+    <AuthContext.Provider value={{ isLogin, handleLogin, logout }}>
       <Nav />
       <div>
-        <Outlet />
+        <Outlet setIsLogin={setIsLogin} />
       </div>
       <Footer />
-    </div>
+    </AuthContext.Provider>
   );
 }
 

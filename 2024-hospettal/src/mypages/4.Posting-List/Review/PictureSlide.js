@@ -11,18 +11,6 @@ function PictureSlide() {
       alt: "금희",
       url: require("../../../assets/gallery/갤러리_01.jpg"),
     },
-    {
-      id: 2,
-      label: "Img",
-      alt: "주희",
-      url: require("../../../assets/gallery/갤러리_02.jpg"),
-    },
-    {
-      id: 3,
-      label: "Img",
-      alt: "영희",
-      url: require("../../../assets/gallery/갤러리_01.jpg"),
-    },
   ]);
 
   const [current, setCurrent] = useState(0);
@@ -47,8 +35,8 @@ function PictureSlide() {
 
   const translateXValue = -current * 126;
 
-  const handleClick = (id,index) => {
-    inputRef.current.click();
+  const handleClick = (e,id,index) => {
+    e.target.nextElementSibling.click();
   }; 
 
   const handleImageChange = (e, id, index) => {
@@ -72,7 +60,6 @@ function PictureSlide() {
   };
 
 
-
   return (
     <div className={style.commentSlide}>
       <div className={style.carousel}>
@@ -86,7 +73,7 @@ function PictureSlide() {
                 className={style.petPopol}
                 key={`pet${pet.id}`}
                 style={{ backgroundImage: `url(${pet.url})` }}
-              >
+              >{pet.id}
                 {preview && (
                   <img
                     className="InputPreview selected"
@@ -96,11 +83,12 @@ function PictureSlide() {
                 )}
                 <span
                   className={style.retouch}
-                  onClick={() => {
-                    handleClick(pet.id, index);
+                  onClick={(e) => {
+                    handleClick(e, pet.id, index);
                   }}
                 >
                   수정하기
+                </span>
                   <input
                     type="file"
                     accept="image/png, image/jpeg"
@@ -108,7 +96,6 @@ function PictureSlide() {
                     ref={inputRef}
                     style={{ display: "none" }}
                   />
-                </span>
               </div>
             );
           })}

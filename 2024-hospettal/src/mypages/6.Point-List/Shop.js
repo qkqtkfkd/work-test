@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Button from "../../component/Button";
 import styles from "../MyPage.module.css";
 import style from "./Shop.module.css";
@@ -60,13 +59,6 @@ function Shop(info) {
     },
     {
       id: 8,
-      label: "고구마 져키 50g (6개입)",
-      alt: "pointshop_08",
-      price: "15,000냥",
-      url: require("../../assets/gallery/pointshop_08.png"),
-    },
-    {
-      id: 9,
       label: "고구마 져키 50g (6개입)",
       alt: "pointshop_08",
       price: "15,000냥",
