@@ -7,11 +7,8 @@ import PotoSlide from "./PotoSlide";
 import { useEffect, useState } from "react";
 import Overlay from "../../Overlay";
 import CorrectionModal from "./CorrectionModal";
-import { getPostByNo } from "./Data";
 
-
-
-function WritingModal({ setModalOpen, }) {
+function WritingModal({ setModalOpen }) {
   let [modalInOpen, setModalInOpen] = useState(false);
 
   useEffect(() => {
@@ -21,12 +18,6 @@ function WritingModal({ setModalOpen, }) {
       document.body.style.overflow = "auto";
     }
   }, [modalInOpen]);
-
-  // const [data, setData] = useState({});
-  // useEffect(() => {
-  //   setData(getPostByNo(no));
-  // }, []);
-
 
   return (
     <div className={style.modalbox} style={{ width: "70rem", height: "45rem" }}>
