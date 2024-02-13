@@ -50,6 +50,8 @@ function FileInput() {
           <img src={closeImg} />
         </button>
       )}
+
+      <span className="register">마이펫 사진등록하기</span>
     </div>
   );
 }

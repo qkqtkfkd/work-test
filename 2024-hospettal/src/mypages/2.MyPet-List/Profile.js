@@ -130,7 +130,7 @@ function Profile() {
               type="submit"
               style={
                 selectedButton === "completed"
-                  ? { backgroundColor: "#ff9b50", color: "#fff" }
+                  ? { backgroundColor: "#ff9b50", color: "#fff", border: "none" }
                   : {}
               }
               onClick={() => handleButtonClick("completed")}
@@ -142,7 +142,7 @@ function Profile() {
               type="submit"
               style={
                 selectedButton === "incomplete"
-                  ? { backgroundColor: "#ff9b50", color: "#fff" }
+                  ? { backgroundColor: "#ff9b50", color: "#fff", border: "none" }
                   : {}
               }
               onClick={() => handleButtonClick("incomplete")}
@@ -160,77 +160,66 @@ function Profile() {
             <div className={styles.choice2}>
               <select className={styles.select2} name="" id="">
                 <option value="">선택</option>
+                <option value="">기초</option>
+                <option value="">백혈병</option>
+                <option value="">간염</option>
+                <option value="">사상충</option>
               </select>{" "}
               <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
-              <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
+
               <input
                 className={styles.input2}
                 type="birthDate"
                 id="birthDate"
-                placeholder="접종종류를 작성해주세요."
+                placeholder="1차"
               />
             </div>
             <div className={styles.choice2}>
               <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
+              <option value="">선택</option>
+                <option value="">기초</option>
+                <option value="">백혈병</option>
+                <option value="">간염</option>
+                <option value="">사상충</option>
               </select>{" "}
               <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
-              <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
               <input
                 className={styles.input2}
                 type="birthDate"
                 id="birthDate"
-                placeholder="접종종류를 작성해주세요."
+                placeholder="2차"
               />
             </div>
             <div className={styles.choice2}>
               <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
+              <option value="">선택</option>
+                <option value="">기초</option>
+                <option value="">백혈병</option>
+                <option value="">간염</option>
+                <option value="">사상충</option>
               </select>{" "}
-              <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
-              <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
+              <div>-</div>              
               <input
                 className={styles.input2}
                 type="birthDate"
                 id="birthDate"
-                placeholder="접종종류를 작성해주세요."
+                placeholder="3차"
               />
             </div>
             <div className={styles.choice2}>
               <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
+              <option value="">선택</option>
+                <option value="">기초</option>
+                <option value="">백혈병</option>
+                <option value="">간염</option>
+                <option value="">사상충</option>
               </select>{" "}
               <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
-              <div>-</div>
-              <select className={styles.select2} name="" id="">
-                <option value="">선택</option>
-              </select>{" "}
               <input
                 className={styles.input2}
                 type="birthDate"
                 id="birthDate"
-                placeholder="접종종류를 작성해주세요."
+                placeholder="4차"
               />
             </div>
           </div>

@@ -22,7 +22,7 @@ function MyPet() {
             <form className={style.poto}>
 
               <FileInput />
-              <span className={style.register}>마이펫 사진등록하기</span>
+              
               
             </form>
           </div>
