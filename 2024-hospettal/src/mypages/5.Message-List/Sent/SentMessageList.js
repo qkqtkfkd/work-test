@@ -6,23 +6,22 @@ import Overlay from "../../Overlay";
 import SentModal from "./SentModal";
 import { firestore } from "../../../firebase";
 
+const SentMessageList = () => {
+  // //////파이어베이스///////////
+  const [MessageS, setMessageS] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const MessageSData = await firestore
+        .collection("MyPageCustomer-MessageS")
+        .get();
+      const dataList = MessageSData.docs.map((doc) => doc.data());
+      setMessageS(dataList);
+    };
 
-const SentMessageList = (props) => {
-    // //////파이어베이스///////////
-    const [MessageS, setMessageS] = useState([]);
-    useEffect(() => {
-      const fetchData = async () => {
-        const MessageSData = await firestore
-          .collection("MyPageCustomer-MessageS")
-          .get();
-        const dataList = MessageSData.docs.map((doc) => doc.data());
-        setMessageS(dataList);
-      };
-  
-      fetchData();
-    }, []);
-  
-    // ////////모달///////////
+    fetchData();
+  }, []); 
+
+  // ////////모달///////////
   let [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -32,7 +31,6 @@ const SentMessageList = (props) => {
       document.body.style.overflow = "auto";
     }
   }, [modalOpen]);
-
 
   // ///////////////
 
@@ -44,7 +42,9 @@ const SentMessageList = (props) => {
               return (
                 <CommonTableRow key={index}>
                   <CommonTableColumn>
-                    <input type={item.checkbox} />
+                    <input
+                      type={item.checkbox}
+                    />
                   </CommonTableColumn>
                   <CommonTableColumn>{item.no}</CommonTableColumn>
                   <CommonTableColumn>{item.witer}</CommonTableColumn>
