@@ -1,9 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import AuthContext from "./Account/AuthContext";
 import "./App.font.css";
+
+import { firestore } from "../firebase";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -17,6 +19,10 @@ function App() {
     setIsLogin(false);
     navigate("/");
   }, [navigate]);
+
+  // //////////////
+
+  // //////////////
 
   return (
     <AuthContext.Provider value={{ isLogin, handleLogin, logout }}>

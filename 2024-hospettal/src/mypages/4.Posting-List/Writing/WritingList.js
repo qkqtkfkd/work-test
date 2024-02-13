@@ -2,52 +2,36 @@ import React, { useEffect, useState } from "react";
 import CommonTable from "../../table/CommonTable";
 import CommonTableColumn from "../../table/CommonTableColumn";
 import CommonTableRow from "../../table/CommonTableRow";
-import { postList } from "./Data";
+// import { postList } from "./Data";
 import Overlay from "../../Overlay";
 import WritingModal from "./WritingModal";
 
 import { firestore } from "../../../firebase";
 
-const WritingList = props => {
-  const [dataList, setDataList] = useState([]);
+const WritingList = (props) => {
 
+// //////파이어베이스///////////
+  const [PostingW, setPostingW] = useState([]);
   useEffect(() => {
-    setDataList(postList);
+    const fetchData = async () => {
+      const PostingWData = await firestore
+        .collection("MyPageCustomer-PostingW")
+        .get();
+      const dataList = PostingWData.docs.map((doc) => doc.data());
+      setPostingW(dataList);
+    };
+
+    fetchData();
   }, []);
 
-// //////////////////
-
-  useEffect(() => {
-    // PostingW이라는 변수로 firestore의 collection인 ~-PostingW에 접근!
-    const PostingW = firestore.collection("MyPageCustomer-PostingW");
-    // collection의 document인 "ADl4LUogsYVrrSe9SCTp"을 가져온다.
-    
-    // 모든 document 가져오기
-    PostingW.get().then((docs) => {
-      // 반복문으로 docuemnt 하나씩 확인
-      docs.forEach((doc) => {
-        if (doc.exists) {
-          // document의 데이터
-          console.log(doc.data());
-          // document의 id
-          console.log(doc.id);
-        }
-      });
-    });
-  });
-
-
-
-  // ///////////////////
-  // let [modalOpen, setModalOpen] = useState(false);
+  // ////////모달///////////
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedNo, setSelectedNo] = useState(null);
-  
+
   const openModal = (no) => {
     setSelectedNo(no);
     setModalOpen(true);
   };
-
 
   useEffect(() => {
     if (modalOpen) {
@@ -60,8 +44,8 @@ const WritingList = props => {
   return (
     <>
       <CommonTable headersName={["", "번호", "제목", "작성글", "작성일"]}>
-        {dataList
-          ? dataList.map((item, index) => {
+        {PostingW
+          ? PostingW.map((item, index) => {
               return (
                 <CommonTableRow key={index}>
                   <CommonTableColumn>
@@ -69,7 +53,7 @@ const WritingList = props => {
                   </CommonTableColumn>
                   <CommonTableColumn>{item.no}</CommonTableColumn>
                   <CommonTableColumn>
-                  <p
+                    <p
                       onClick={() => {
                         openModal(item.no);
                       }}
@@ -86,7 +70,9 @@ const WritingList = props => {
       </CommonTable>
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <WritingModal setModalOpen={setModalOpen} selectedNo={selectedNo} />}
+      {modalOpen && (
+        <WritingModal setModalOpen={setModalOpen} selectedNo={selectedNo} />
+      )}
     </>
   );
 };

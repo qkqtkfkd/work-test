@@ -2,18 +2,26 @@ import React, { useEffect, useState } from "react";
 import CommonTable from "../table/CommonTable";
 import CommonTableColumn from "../table/CommonTableColumn";
 import CommonTableRow from "../table/CommonTableRow";
-import { postList } from "./Data";
 import Overlay from "../Overlay";
 import ReservationModal from "./ReservationModal";
+import { firestore } from "../../firebase";
 
 const ReservationList = (props) => {
-  const [dataList, setDataList] = useState([]);
-
+  // //////파이어베이스///////////
+  const [Reserv, setReserv] = useState([]);
   useEffect(() => {
-    setDataList(postList);
+    const fetchData = async () => {
+      const ReservData = await firestore
+        .collection("MyPageCustomer-Reservation")
+        .get();
+      const dataList = ReservData.docs.map((doc) => doc.data());
+      setReserv(dataList);
+    };
+
+    fetchData();
   }, []);
 
-  // ///////////////////
+  // ////////모달///////////
   let [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -39,30 +47,33 @@ const ReservationList = (props) => {
           "예약일자",
         ]}
       >
-        {dataList
-          ? dataList.map((item, index) => {
+        {Reserv
+          ? Reserv.map((item, index) => {
               return (
-        <CommonTableRow key={index}>
-          <CommonTableColumn>
-            <input type={item.checkbox} />
-          </CommonTableColumn>
-          <CommonTableColumn>{item.no}</CommonTableColumn>
-          <CommonTableColumn>{item.reservationNumber}</CommonTableColumn>
-          <CommonTableColumn>{item.condition}</CommonTableColumn>
-          <CommonTableColumn>
-          <p
+                <CommonTableRow key={index}>
+                  <CommonTableColumn>
+                    <input type={item.checkbox} />
+                  </CommonTableColumn>
+                  <CommonTableColumn>{item.no}</CommonTableColumn>
+                  <CommonTableColumn>
+                    {item.reservationNumber}
+                  </CommonTableColumn>
+                  <CommonTableColumn>{item.condition}</CommonTableColumn>
+                  <CommonTableColumn>
+                    <p
                       onClick={() => {
                         setModalOpen(true);
                       }}
                     >
                       {item.petName}
-                    </p></CommonTableColumn>
-          <CommonTableColumn>{item.hospital}</CommonTableColumn>
-          <CommonTableColumn>{item.reservationDate}</CommonTableColumn>
-        </CommonTableRow>
-        );
-      })
-    : ""}
+                    </p>
+                  </CommonTableColumn>
+                  <CommonTableColumn>{item.hospital}</CommonTableColumn>
+                  <CommonTableColumn>{item.reservationDate}</CommonTableColumn>
+                </CommonTableRow>
+              );
+            })
+          : ""}
       </CommonTable>
       {modalOpen && <Overlay modalOpen={modalOpen} />}
       {modalOpen && <ReservationModal setModalOpen={setModalOpen} />}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "../../component/Button";
+import Button from "../../../component/Button";
 import InquiryList from "./InquiryList";
-import styles from "../MyPage.module.css";
+import styles from "../../MyPage.module.css";
 
 function Inquiry() {
   return (

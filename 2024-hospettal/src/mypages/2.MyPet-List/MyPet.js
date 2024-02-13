@@ -21,8 +21,7 @@ function MyPet() {
           <div className={style.album}>
             <form className={style.poto}>
 
-              <FileInput />
-              
+              <FileInput />              
               
             </form>
           </div>

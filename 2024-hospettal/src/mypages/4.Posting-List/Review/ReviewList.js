@@ -2,17 +2,28 @@ import React, { useEffect, useState } from "react";
 import CommonTable from "../../table/CommonTable";
 import CommonTableColumn from "../../table/CommonTableColumn";
 import CommonTableRow from "../../table/CommonTableRow";
-import { postList } from "./Data";
 import Overlay from "../../Overlay";
 import ReviewModal from "./ReviewModal";
+import { firestore } from "../../../firebase";
+
 
 const ReviewList = (props) => {
-  const [dataList, setDataList] = useState([]);
-
+// //////파이어베이스///////////
+  const [PostingR, setPostingR] = useState([]);
   useEffect(() => {
-    setDataList(postList);
+    const fetchData = async () => {
+      const PostingRData = await firestore
+        .collection("MyPageCustomer-PostingR")
+        .get();
+      const dataList = PostingRData.docs.map((doc) => doc.data());
+      setPostingR(dataList);
+    };
+
+    fetchData();
   }, []);
 
+
+// //////모달///////////
   let [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -26,8 +37,8 @@ const ReviewList = (props) => {
   return (
     <>
       <CommonTable headersName={["", "번호", "업체명", "후기 제목", "날짜"]}>
-        {dataList
-          ? dataList.map((item, index) => {
+        {PostingR
+          ? PostingR.map((item, index) => {
               return (
                 <CommonTableRow key={index}>
                   <CommonTableColumn>

@@ -2,18 +2,27 @@ import React, { useEffect, useState } from "react";
 import CommonTable from "../../table/CommonTable";
 import CommonTableColumn from "../../table/CommonTableColumn";
 import CommonTableRow from "../../table/CommonTableRow";
-import { postList } from "./Data";
 import Overlay from "../../Overlay";
 import SentModal from "./SentModal";
+import { firestore } from "../../../firebase";
+
 
 const SentMessageList = (props) => {
-  const [dataList, setDataList] = useState([]);
-
-  useEffect(() => {
-    setDataList(postList);
-  }, []);
-
-  // ///////////////////
+    // //////파이어베이스///////////
+    const [MessageS, setMessageS] = useState([]);
+    useEffect(() => {
+      const fetchData = async () => {
+        const MessageSData = await firestore
+          .collection("MyPageCustomer-MessageS")
+          .get();
+        const dataList = MessageSData.docs.map((doc) => doc.data());
+        setMessageS(dataList);
+      };
+  
+      fetchData();
+    }, []);
+  
+    // ////////모달///////////
   let [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -30,8 +39,8 @@ const SentMessageList = (props) => {
   return (
     <>
       <CommonTable headersName={["", "번호", "닉네임", "쪽지내용", "날짜"]}>
-        {dataList
-          ? dataList.map((item, index) => {
+        {MessageS
+          ? MessageS.map((item, index) => {
               return (
                 <CommonTableRow key={index}>
                   <CommonTableColumn>

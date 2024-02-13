@@ -11,7 +11,7 @@ import MyPet from "./mypages/2.MyPet-List/MyPet";
 import Reservation from "./mypages/3.Reservation-List/Reservation.js";
 import Writing from "./mypages/4.Posting-List/Writing/Writing.js";
 import Review from "./mypages/4.Posting-List/Review/Review.js";
-import Inquiry from "./mypages/4.Posting-List/Inquiry";
+import Inquiry from "./mypages/4.Posting-List/Inquiry/Inquiry";
 import SentMessage from "./mypages/5.Message-List/Sent/SentMessage";
 import MessageReceived from "./mypages/5.Message-List/Received/MessageReceived";
 import Point from "./mypages/6.Point-List/Point";
