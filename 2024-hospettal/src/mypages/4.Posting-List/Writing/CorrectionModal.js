@@ -4,7 +4,7 @@ import IMG from "../../../assets/gallery/꿀팁_02.png";
 import styless from "./CorrectionModal.module.css";
 import { useEffect, useState } from "react";
 import { getData } from "../../../firebase";
-import ImgInput from './../ImgInput';
+import ImgInput from './ImgInput';
 
 function CorrectionModal({ setModalInOpen, messageNo,  }) {
   const [PostingW, setPostingW] = useState();
@@ -40,9 +40,9 @@ function CorrectionModal({ setModalInOpen, messageNo,  }) {
 
       <div className={styless.writingbody}>
         <div className={styless.poto}>
-          <ImgInput/>
-          <img src={IMG} alt="사진" />
-          <span className={styless.span}>+ 사진 수정하기</span>
+          {/* <ImgInput /> */}
+          <img src={IMG} alt="사진" />          
+          <span className="span">+ 사진 수정하기</span>   
         </div>
 
         <div className={styless.post}>

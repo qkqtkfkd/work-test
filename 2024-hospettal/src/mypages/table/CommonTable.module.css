@@ -19,7 +19,16 @@
 
 .common_table_column {
   padding: 1.5rem 0;
-  border-bottom: 2px solid #ff8b50;
+  border-bottom: 2px solid #ff8b50; 
 }
 
+.common_table_column p {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%; 
+  display: block; /* 블록 요소로 변환 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
 

@@ -25,11 +25,9 @@ function Main() {
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="courses">
+            <Route path="404NotFound-Cat" element={<NotFoundCat />} />
+            <Route path="404NotFound-Dog" element={<NotFoundDog />} />
           </Route>
-
-          <Route path="/404NotFound-Cat" element={<NotFoundCat />} />
-          <Route path="/404NotFound-Dog" element={<NotFoundDog />} />
-
 
           <Route path="myPage" element={<MyPage />}>
             {/* <SideBar /> */}
@@ -55,7 +53,4 @@ function Main() {
   );
 }
 
-
-
 export default Main;
-

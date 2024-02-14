@@ -105,6 +105,26 @@ function Nav() {
               Community
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              to="/courses/404NotFound-Cat"
+              className="nav-link"
+              style={getLinkStyle}
+              onClick={handleLinkClick}
+            >
+              fff
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/courses/404NotFound-Dog"
+              className="nav-link"
+              style={getLinkStyle}
+              onClick={handleLinkClick}
+            >
+              dddd
+            </NavLink>
+          </li>
 
 
           <li className="nav-item">

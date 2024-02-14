@@ -7,6 +7,16 @@ import { useEffect, useState } from "react";
 function ReservationModal({ setModalOpen, messageNo }) {
   const [Reserv, setReserv] = useState();
 
+  const listBoxFields = [
+    { label: "보호자 성명", value: Reserv?.name },
+    { label: "펫 이름", value: Reserv?.petName },
+    { label: "펫 종류", value: Reserv?.petType },
+    { label: "연락처", value: Reserv?.phoneNumber },
+    { label: "병원명", value: Reserv?.hospital },
+    { label: "예약일지", value: Reserv?.reservationDate },
+    { label: "증상 또는 병명", value: Reserv?.symptom },
+  ];
+
   const handleLoad = async () => {
     const data = await getData(
       "MyPageCustomer-Reservation",
@@ -14,13 +24,12 @@ function ReservationModal({ setModalOpen, messageNo }) {
       "==",
       messageNo
     );
-    setReserv (data);
+    setReserv(data);
   };
 
   useEffect(() => {
     handleLoad();
   }, []);
-
 
   return (
     <div className={style.modalbox} style={{ width: "60rem", height: "40rem" }}>
@@ -37,51 +46,12 @@ function ReservationModal({ setModalOpen, messageNo }) {
       </div>
       <div className={styless.bookingbody}>
         <from className={styless.bookingList}>
-          
-            <div className={styless.container}>
-              <label className={styless.label}>
-                보호자 성명
-              </label>
-              <p className={styless.text}>{Reserv?.name}</p>
+          {listBoxFields.map((list, index) => (
+            <div className={styless.container} key={index}>
+              <label className={styless.label}>{list.label}</label>
+              <p className={styless.text}>{list.value}</p>
             </div>
-            <div className={styless.container}>
-              <label className={styless.label}>
-                펫 이름
-              </label>
-              <p className={styless.text}>{Reserv?.petName}</p>
-            </div>
-            <div className={styless.container}>
-              <label className={styless.label}>
-                펫 종류
-              </label>
-              <p className={styless.text}>{Reserv?.petType}</p>
-            </div>
-            <div className={styless.container}>
-              <label className={styless.label}>
-                연락처
-              </label>
-              <p className={styless.text}>{Reserv?.phoneNumber}</p>
-            </div>
-            <div className={styless.container}>
-              <label className={styless.label}>
-                병원명
-              </label>
-              <p className={styless.text}>{Reserv?.hospital}</p>
-            </div>
-            <div className={styless.container}>
-              <label className={styless.label}>
-                예약일지
-              </label>
-              <p className={styless.text}>{Reserv?.reservationDate}</p>
-            </div>
-            <div className={styless.container}>
-              <label className={styless.label}>
-                증상 또는 병명
-              </label>
-              <p className={styless.text}>{Reserv?.symptom}</p>
-            </div>
-
-          
+          ))}
         </from>
 
         <button

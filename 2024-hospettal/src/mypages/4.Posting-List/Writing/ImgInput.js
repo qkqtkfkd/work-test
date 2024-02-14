@@ -34,7 +34,7 @@ function ImgInput() {
         accept="image/png, image/jpeg"
         onChange={handleChange}
         ref={inputRef}
-      />     
+      />  
     </div>
   );
 }
