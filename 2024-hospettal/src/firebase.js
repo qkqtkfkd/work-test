@@ -51,7 +51,6 @@ const firestore = firebase.firestore();
 const db = getFirestore(app);
 const storage = getStorage();
 
-
 // 이미지 업로드 김원상
 const uploadImages = async (images) => {
   const imageUrls = [];
@@ -397,4 +396,3 @@ export {
   getSocialMember,
   firestore,
 };
-

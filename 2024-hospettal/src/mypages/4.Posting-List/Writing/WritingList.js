@@ -5,13 +5,14 @@ import CommonTableRow from "../../table/CommonTableRow";
 // import { postList } from "./Data";
 import Overlay from "../../Overlay";
 import WritingModal from "./WritingModal";
-
 import { firestore } from "../../../firebase";
 
 const WritingList = (props) => {
 
 // //////파이어베이스///////////
   const [PostingW, setPostingW] = useState([]);
+  const [messageNo, setMessageNo] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       const PostingWData = await firestore
@@ -56,6 +57,7 @@ const WritingList = (props) => {
                     <p
                       onClick={() => {
                         openModal(item.no);
+                        setMessageNo(item.no);  
                       }}
                     >
                       {item.title}
@@ -71,7 +73,7 @@ const WritingList = (props) => {
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
       {modalOpen && (
-        <WritingModal setModalOpen={setModalOpen} selectedNo={selectedNo} />
+        <WritingModal setModalOpen={setModalOpen} selectedNo={selectedNo} messageNo={messageNo}/>
       )}
     </>
   );

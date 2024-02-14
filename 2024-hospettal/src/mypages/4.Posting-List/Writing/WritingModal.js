@@ -7,12 +7,13 @@ import PotoSlide from "./PotoSlide";
 import { useEffect, useState } from "react";
 import Overlay from "../../Overlay";
 import CorrectionModal from "./CorrectionModal";
-import { getPostByNo } from "./Data";
+import { getData } from "../../../firebase";
 
 
 
-function WritingModal({ setModalOpen, }) {
-  let [modalInOpen, setModalInOpen] = useState(false);
+function WritingModal({ setModalOpen, messageNo }) {
+  const [PostingW, setPostingW] = useState();
+  let [modalInOpen, setModalInOpen] = useState(false);  
 
   useEffect(() => {
     if (modalInOpen) {
@@ -22,11 +23,19 @@ function WritingModal({ setModalOpen, }) {
     }
   }, [modalInOpen]);
 
-  // const [data, setData] = useState({});
-  // useEffect(() => {
-  //   setData(getPostByNo(no));
-  // }, []);
+  const handleLoad = async () => {
+    const data = await getData(
+      "MyPageCustomer-PostingW",
+      "no",
+      "==",
+      messageNo
+    );
+    setPostingW(data);
+  };
 
+  useEffect(() => {
+    handleLoad();
+  }, []);
 
   return (
     <div className={style.modalbox} style={{ width: "70rem", height: "45rem" }}>
@@ -52,7 +61,7 @@ function WritingModal({ setModalOpen, }) {
             <div className={styless.head}>
               <figure className={styless.figure}></figure>
               <p style={{ fontSize: "15px" }}>
-                <strong>땡이는 귀여워</strong>
+                <strong>{PostingW?.witer}</strong>
               </p>
               <div className={styless.ico}>
                 <Like className={styless.icon} />
@@ -66,16 +75,11 @@ function WritingModal({ setModalOpen, }) {
 
             <div className={styless.wordBox}>
               <div className={styless.wordTitle}>
-                <p className={styless.title_p}>냥이들 츄르 나눔합니다!!</p>
-                <span className={styless.date}>2024-01-12</span>
+                <p className={styless.title_p}>{PostingW?.title}</p>
+                <span className={styless.date}>{PostingW?.createDate}</span>
               </div>
               <p className={styless.word_p}>
-                며칠 전에 구매한 냥이들 츄르말인데요. <br />
-                최근에 또 냥이 츄르를 선물 받았는데 유통기한은 정해져 있고 ㅠㅜ
-                해서 츄르 몇분께 나눔할려고 합니다!
-                <br />
-                <br />
-                댓글 남겨주세요!!
+              {PostingW?.content}
               </p>
             </div>
 
@@ -116,7 +120,7 @@ function WritingModal({ setModalOpen, }) {
         </div>
       </div>
       {modalInOpen && <Overlay modalOpen={modalInOpen} />}
-      {modalInOpen && <CorrectionModal setModalInOpen={setModalInOpen} />}
+      {modalInOpen && <CorrectionModal setModalInOpen={setModalInOpen} messageNo={messageNo}/>}
     </div>
   );
 }

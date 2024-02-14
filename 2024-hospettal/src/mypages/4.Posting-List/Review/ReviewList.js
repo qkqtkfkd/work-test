@@ -10,6 +10,8 @@ import { firestore } from "../../../firebase";
 const ReviewList = (props) => {
 // //////파이어베이스///////////
   const [PostingR, setPostingR] = useState([]);
+  const [messageNo, setMessageNo] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       const PostingRData = await firestore
@@ -21,7 +23,6 @@ const ReviewList = (props) => {
 
     fetchData();
   }, []);
-
 
 // //////모달///////////
   let [modalOpen, setModalOpen] = useState(false);
@@ -51,6 +52,7 @@ const ReviewList = (props) => {
                     <p
                       onClick={() => {
                         setModalOpen(true);
+                        setMessageNo(item.no);  
                       }}
                     >
                       {item.title}
@@ -64,7 +66,7 @@ const ReviewList = (props) => {
       </CommonTable>
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <ReviewModal setModalOpen={setModalOpen} />}
+      {modalOpen && <ReviewModal setModalOpen={setModalOpen} messageNo={messageNo} />}
     </>
   );
 };

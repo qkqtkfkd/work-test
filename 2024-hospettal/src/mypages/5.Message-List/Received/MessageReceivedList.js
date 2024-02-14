@@ -11,6 +11,8 @@ import { firestore } from "../../../firebase";
 const MessageReceivedList = (props) => {
   // //////파이어베이스///////////
   const [MessageR, setMessageR] = useState([]);
+  const [messageNo, setMessageNo] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       const MessageRData = await firestore
@@ -52,6 +54,7 @@ const MessageReceivedList = (props) => {
                     <p
                       onClick={() => {
                         setModalOpen(true);
+                        setMessageNo(item.no);  
                       }}
                     >
                       {item.title}
@@ -64,7 +67,7 @@ const MessageReceivedList = (props) => {
           : ""}
       </CommonTable>
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <MessageModal setModalOpen={setModalOpen} />}
+      {modalOpen && <MessageModal setModalOpen={setModalOpen} messageNo={messageNo} />}
     </>
   );
 };

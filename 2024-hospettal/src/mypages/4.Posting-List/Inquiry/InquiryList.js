@@ -7,6 +7,8 @@ import { firestore } from "../../../firebase";
 const InquiryList = (props) => {
   // //////파이어베이스///////////
   const [PostingI, setPostingI] = useState([]);
+  const [messageNo, setMessageNo] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       const PostingIData = await firestore

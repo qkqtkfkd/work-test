@@ -6,9 +6,11 @@ import Overlay from "../../Overlay";
 import SentModal from "./SentModal";
 import { firestore } from "../../../firebase";
 
-const SentMessageList = () => {
+const SentMessageList = (props) => {
   // //////파이어베이스///////////
   const [MessageS, setMessageS] = useState([]);
+  const [messageNo, setMessageNo] = useState(0);
+  
   useEffect(() => {
     const fetchData = async () => {
       const MessageSData = await firestore
@@ -51,7 +53,8 @@ const SentMessageList = () => {
                   <CommonTableColumn>
                     <p
                       onClick={() => {
-                        setModalOpen(true);                        
+                        setModalOpen(true);
+                        setMessageNo(item.no);  
                       }}
                     >
                       {item.title}
@@ -65,7 +68,7 @@ const SentMessageList = () => {
       </CommonTable>
 
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <SentModal setModalOpen={setModalOpen} />}
+      {modalOpen && <SentModal setModalOpen={setModalOpen} messageNo={messageNo}/>}
     </>
   );
 };

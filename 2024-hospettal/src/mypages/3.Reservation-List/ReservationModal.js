@@ -1,25 +1,26 @@
 import styless from "./ReservationModal.module.css";
 import style from "../Modal.module.css";
 import { ReactComponent as Close } from "../../assets/icon/icon-close_w.svg";
+import { getData } from "../../firebase";
+import { useEffect, useState } from "react";
 
-function ReservationModal({ setModalOpen }) {
-  const listBoxFields = [
-    { id: "name", label: "보호자 성명", type: "text", placeholder: "이건" },
-    { id: "petName", label: "펫 이름", type: "text", placeholder: "금희" },
-    { id: "petType", label: "펫 종류", placeholder: "기타" },
-    {
-      id: "phoneNumber",
-      label: "연락처",
-      placeholder: "010-1234-5678",
-    },
-    { id: "hospital", label: "병원명", placeholder: "동의보감" },
-    { id: "date", label: "예약일지", placeholder: "이건" },
-    {
-      id: "Symptom",
-      label: "증상 또는 병명",
-      placeholder: "잦은 설사",
-    },
-  ];
+function ReservationModal({ setModalOpen, messageNo }) {
+  const [Reserv, setReserv] = useState();
+
+  const handleLoad = async () => {
+    const data = await getData(
+      "MyPageCustomer-Reservation",
+      "no",
+      "==",
+      messageNo
+    );
+    setReserv (data);
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+
 
   return (
     <div className={style.modalbox} style={{ width: "60rem", height: "40rem" }}>
@@ -36,14 +37,51 @@ function ReservationModal({ setModalOpen }) {
       </div>
       <div className={styless.bookingbody}>
         <from className={styless.bookingList}>
-          {listBoxFields.map((list) => (
-            <div className={styless.container} key={list.id}>
-              <label className={styless.label} htmlFor={list.id}>
-                {list.label}
+          
+            <div className={styless.container}>
+              <label className={styless.label}>
+                보호자 성명
               </label>
-              <p className={styless.text}>{list.placeholder}</p>
+              <p className={styless.text}>{Reserv?.name}</p>
             </div>
-          ))}
+            <div className={styless.container}>
+              <label className={styless.label}>
+                펫 이름
+              </label>
+              <p className={styless.text}>{Reserv?.petName}</p>
+            </div>
+            <div className={styless.container}>
+              <label className={styless.label}>
+                펫 종류
+              </label>
+              <p className={styless.text}>{Reserv?.petType}</p>
+            </div>
+            <div className={styless.container}>
+              <label className={styless.label}>
+                연락처
+              </label>
+              <p className={styless.text}>{Reserv?.phoneNumber}</p>
+            </div>
+            <div className={styless.container}>
+              <label className={styless.label}>
+                병원명
+              </label>
+              <p className={styless.text}>{Reserv?.hospital}</p>
+            </div>
+            <div className={styless.container}>
+              <label className={styless.label}>
+                예약일지
+              </label>
+              <p className={styless.text}>{Reserv?.reservationDate}</p>
+            </div>
+            <div className={styless.container}>
+              <label className={styless.label}>
+                증상 또는 병명
+              </label>
+              <p className={styless.text}>{Reserv?.symptom}</p>
+            </div>
+
+          
         </from>
 
         <button

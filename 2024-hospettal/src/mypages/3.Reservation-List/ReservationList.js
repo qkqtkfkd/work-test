@@ -9,6 +9,8 @@ import { firestore } from "../../firebase";
 const ReservationList = (props) => {
   // //////파이어베이스///////////
   const [Reserv, setReserv] = useState([]);
+  const [messageNo, setMessageNo] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       const ReservData = await firestore
@@ -63,6 +65,7 @@ const ReservationList = (props) => {
                     <p
                       onClick={() => {
                         setModalOpen(true);
+                        setMessageNo(item.no);  
                       }}
                     >
                       {item.petName}
@@ -76,7 +79,7 @@ const ReservationList = (props) => {
           : ""}
       </CommonTable>
       {modalOpen && <Overlay modalOpen={modalOpen} />}
-      {modalOpen && <ReservationModal setModalOpen={setModalOpen} />}
+      {modalOpen && <ReservationModal setModalOpen={setModalOpen} messageNo={messageNo}/>}
     </>
   );
 };

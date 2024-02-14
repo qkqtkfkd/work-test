@@ -1,8 +1,26 @@
 import style from "../../Modal.module.css";
 import { ReactComponent as Close } from "../../../assets/icon/icon-close_w.svg";
 import styless from "../MessageModal.module.css";
+import { getData } from "../../../firebase";
+import { useEffect, useState } from "react";
 
-function MessageModal({ setModalOpen }) {
+function MessageModal({ setModalOpen, messageNo }) {
+  const [MessageR, setMessageR] = useState();
+
+  const handleLoad = async () => {
+    const data = await getData(
+      "MyPageCustomer-MessageR",
+      "no",
+      "==",
+      messageNo
+    );
+    setMessageR(data);
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+
   return (
     <div className={style.modalbox} style={{ width: "70rem", height: "40rem" }}>
       <div className={style.header}>
@@ -18,7 +36,7 @@ function MessageModal({ setModalOpen }) {
       </div>
       <div className={styless.Messagebody}>
       <from className={styless.mms}>
-        <p>안녕하세요? 금희는 소인가요?</p>
+        <p>{MessageR?.content}</p>
       </from>
 
       <div className={style.btnbox}>

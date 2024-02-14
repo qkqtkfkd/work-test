@@ -4,14 +4,20 @@ import styless from "./ReviewModal.module.css";
 import { useEffect, useState } from "react";
 import PictureSlide from "./PictureSlide";
 import CheckStars from "./CheckStars";
+import { getData } from "../../../firebase";
 
 const INITIAL_VALUES = {
   rating: 0,
   content: "",
 };
 
-function ReviewModal({ setModalOpen, initialValues = INITIAL_VALUES }) {
+function ReviewModal({
+  setModalOpen,
+  initialValues = INITIAL_VALUES,
+  messageNo,
+}) {
   const [values, setValues] = useState(initialValues);
+  const [PostingR, setPostingR] = useState();
 
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
@@ -26,6 +32,20 @@ function ReviewModal({ setModalOpen, initialValues = INITIAL_VALUES }) {
   useEffect(() => {
     updateRatingNum();
   }, [values.rating]);
+
+  const handleLoad = async () => {
+    const data = await getData(
+      "MyPageCustomer-PostingR",
+      "no",
+      "==",
+      messageNo
+    );
+    setPostingR(data);
+  };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
 
   return (
     <div className={style.modalbox} style={{ width: "60rem", height: "50rem" }}>
@@ -58,14 +78,15 @@ function ReviewModal({ setModalOpen, initialValues = INITIAL_VALUES }) {
         <div className={styless.Comment}>
           {/* <input className={styless.note}></input>                         */}
           <p className={styless.note}>
-            저희 집 금희는 특수동물로 취급해서 다루는 병원이 잘 없는데 수소문
+            {PostingR?.content}
+            {/* 저희 집 금희는 특수동물로 취급해서 다루는 병원이 잘 없는데 수소문
             끝에 동의보감 동물병원으로 방문했는데요. <br />
             회사 선생님도 너무 친절하시고 진료도 잘봐주십니다!
             <br />
             너무 좋아요! 덕분에 금희는 이제 괜찮습니다!
             <br />
             <br />
-            감사합니다 동의보감 병원분들
+            감사합니다 동의보감 병원분들 */}
           </p>
         </div>
 
