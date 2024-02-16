@@ -35,12 +35,12 @@ import {
 
 // ////////////////////
 const firebaseConfig = {
-  apiKey: "AIzaSyCZijsmmnVurDsqymzx-QPFRFjSe1AKbqU",
-  authDomain: "hospetalbackup.firebaseapp.com",
-  projectId: "hospetalbackup",
-  storageBucket: "hospetalbackup.appspot.com",
-  messagingSenderId: "537758130691",
-  appId: "1:537758130691:web:0c6d139ab45907387a2436",
+  apiKey: "AIzaSyARawYxbOyLKnEWMlPSatqIULiZhn5ZDN0",
+  authDomain: "hospetal-f595a.firebaseapp.com",
+  projectId: "hospetal-f595a",
+  storageBucket: "hospetal-f595a.appspot.com",
+  messagingSenderId: "41843789723",
+  appId: "1:41843789723:web:07d3d1aaf16f0bd24b9b3e"
 };
 
 const app = initializeApp(firebaseConfig);
