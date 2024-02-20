@@ -16,6 +16,10 @@ const WritingList = (props) => {
 
   async function fetchMessagesByMemberId() {
     const collections = await getMatchingCollections();
+    if (!Array.isArray(collections)) {
+      console.error('getMatchingCollections did not return an array:', collections);
+      return [];
+    }
     const messages = collections.map((col) => col.data());
     return messages;
   }
@@ -27,10 +31,10 @@ const WritingList = (props) => {
     });
   }, []);
 
-  const handleArticleClick = async (articleId) => {
-    const articleData = await renderArticleContent(articleId);
-    setSelectedPosting(articleData);
-  };
+  // const handleArticleClick = async (articleId) => {
+  //   const articleData = await renderArticleContent(articleId);
+  //   setSelectedPosting(articleData);
+  // };
 
   // ////////모달///////////
 
@@ -53,7 +57,7 @@ const WritingList = (props) => {
             <td>{index + 1}</td>
             <td
               onClick={() => {        
-                handleArticleClick(item.id);
+                // handleArticleClick(item.id);
                 setSelectedPosting(item);
                 console.log(item)        
                 setModalOpen(true);
@@ -71,8 +75,9 @@ const WritingList = (props) => {
       {modalOpen && (
         <WritingModal
           setModalOpen={setModalOpen}
-          // articleData={selectedPosting}
           postingData={selectedPosting}
+          // articleId={selectedPosting.id}
+
         />
       )}
     </>

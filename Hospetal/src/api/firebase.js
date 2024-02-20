@@ -396,6 +396,7 @@ async function renderArticleContent(articleId) {
   await updateDoc(articleContentRef, { commentCount });
 }
 
+
 async function updateCommentCount(articleId) {
   const articleRef = doc(db, "ArticleContent", articleId);
   const articleSnapshot = await getDoc(articleRef);
@@ -851,6 +852,7 @@ async function getMatchingCollections() {
 
   return matchingCollections;
 }
+
 
 
 export {

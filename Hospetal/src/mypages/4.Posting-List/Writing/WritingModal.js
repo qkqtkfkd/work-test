@@ -8,19 +8,21 @@ import PotoSlide from "./PotoSlide";
 import { useEffect, useState } from "react";
 import Overlay from "../../Overlay";
 import CorrectionModal from "./CorrectionModal";
+import { collection, db, getDocs, query,where  } from "../../../api/firebase";
+
 
 function WritingModal({
   setModalOpen,
   modalData,  
-  userData,
-
-  postingData,
+  postingData, 
   articleData,
+  articleId,
 }) {
   let [modalInOpen, setModalInOpen] = useState(false);
 
   const [commentCounts, setCommentCounts] = useState(0);
   const [likeCount, setLikeCount] = useState(0);
+  const [comments, setComments] = useState([]);
 
   // //////파이어베이스///////////
 
@@ -33,7 +35,23 @@ function WritingModal({
   }, [modalInOpen]);
 
   // /////////////////
-  if (!articleData) return null;
+  
+
+  useEffect(() => {
+    async function fetchComments() {
+      if (!articleId) {  // articleId가 유효하지 않으면 (즉, undefined이면) 함수를 종료
+        return;
+      }
+      const commentsRef = collection(db, "Comments");
+      const q = query(commentsRef, where("articleId", "==", articleId));  // 여기에서 articleData.articleId를 참조
+      const commentsSnapshot = await getDocs(q);
+      const commentsData = commentsSnapshot.docs.map(doc => doc.data());
+      setComments(commentsData);
+    }
+    fetchComments();
+  },  [articleId]);
+
+
   // /////////////////
 
   return (
@@ -91,8 +109,8 @@ function WritingModal({
             </div>
 
             <div className={styless.commentss}>
-            {postingData.comments.map((comment, index) => (
-              <div key={index} className={styless.commentssbox}>
+            {comments.map((comment, index) => (
+              <div  key={index} className={styless.commentssbox}>
                 <figure className={styless.figure}>
                   {modalData && modalData.userData.profileImageURL ? (
                     <img
@@ -104,15 +122,15 @@ function WritingModal({
                     <img src={defaultProfile} className="profiles" />
                   )}
                 </figure>
-                <div modalData={modalData} userData={userData}>
+                <div>
                   <p>
-                    <strong>{modalData.articleId}강자자</strong>
+                    <strong>강자자</strong>
                   </p>
-                  <p>{modalData.comments} 저도 나눔하고 싶어요</p>
+                  <p> {comment.title}저도 나눔하고 싶어요</p>
                 </div>
-                <span className={styless.date}>{modalData.uploadTime}</span>
+                <span className={styless.date}></span>
               </div>
-               ))} 
+               ))}
             </div>
           </from>
 
