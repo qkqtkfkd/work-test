@@ -26,8 +26,10 @@ function ShopingModal({ shoping, setModalOpen }) {
                 style={{ objectFit: "contain" }}
               />
             </figure>
+            <div  className={styless.titlebox}>
             <p className={styless.shopItem}>{shoping.label}</p>
             <p className={styless.shopPrice}>{shoping.price}</p>
+            </div>
           </div>
         )}
 
