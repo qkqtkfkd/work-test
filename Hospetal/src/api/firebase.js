@@ -823,17 +823,17 @@ async function getMatchingCollections() {
     where("memberNickName", "==", member.memberNickName)
   );
 
-  const querySnapshot = await getDocs(q);
+  // const querySnapshot = await getDocs(q);
   const matchingCollections = [];
-
-  querySnapshot.forEach((doc) => {
-    const userData = doc.data().userData;
-    userData.forEach((user) => {
-      if (user.memberNickName === member.memberNickName) {
-        matchingCollections.push(doc);
-      }
-    });
-  });
+  // debugger
+  // querySnapshot.forEach((doc) => {
+  //   const userData = doc.data().memberNickName;
+  //   userData.forEach((user) => {
+  //     if (user.memberNickName === member.memberNickName) {
+  //       matchingCollections.push(doc);
+  //     }
+  //   });
+  // });
 
   // articles 컬렉션에서 일치하는 문서 찾기
   const articlesQuery = query(
@@ -902,5 +902,5 @@ export {
   getReservation,
   getDocumentsDescending,
   getMatchingCollections,
-  renderArticleContent,
+  // renderArticleContent,
 };
