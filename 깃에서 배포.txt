@@ -1,0 +1,21 @@
+작업한 것 풀기
+깃-프로젝트-Settings-Pages-Branch(none->master/main)/Save-상단Actions->
+
+////////////////////////////////////////
+[안될 경우]
+X표시: 게시물-상단Rerun jobs-all(다시 런닝) /
+파일탐색기-저장폴더-vs코드/터미널 열기-gem install webrick /
+
+구글-ruby-Ruby Programming Language-다운로드 루비-루비인스톨러-적당한 것 -다운로드 섹션-적당한 것-실행/ 올유저스 설치-저장폴더-터미널-gem install webrick
+
+-bundle exec jekyll serve(gem 버전 업데이트)-jekyll build(안될경우-깃 다시)
+
+////////////////////////////////////////
+
+다시 첫번째 작업-
+리액트 시-작업한 리액트 package.json-"homepage":"~~~" 추가-터미널(npm install gh-pages)- package.json-디버그에 ,     "predeploy":"npm run build",
+    "deploy":"gh-pages -d build" 추가+저장-
+
+c-사용자-저장한 곳-AppData-Local->npm-cache 삭제
+리액트 main-<BrowserRouter basename={process.ebv.PUBLIC_URL} >추가+수정
+vs코드-npm run deploy(안될시 윈도우 용 깃 다운 설치 확인)-깃-올릴 페이지 상단 Code-Settings-좌측 Pages-Branch/gh-pages/Save-상단Actions-빌드

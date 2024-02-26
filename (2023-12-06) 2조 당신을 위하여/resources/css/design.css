@@ -99,9 +99,10 @@ li {
 #DContainer {
   width: 100%;
   margin: 30px auto;
-  padding: 5rem;
+  padding: 3rem 5rem;
   display: flex;
   gap: 3rem;
+  position: relative;
 }
 
 #DContainer li {
@@ -118,7 +119,25 @@ li {
 }
 
 /* 사이드 좌측 바 */
+.sidecontainer {
+  margin-left: 1rem;
+}
+
+.sidecontainer button {
+  border: none;
+  background: none;
+  z-index: 0;
+  top: 100px;
+  position: absolute;
+}
+
+.sidecontainer button img {
+  width: 35px;
+  filter: opacity(0.5) drop-shadow(0 0 0 red) saturate(1000%);
+}
+
 .sideLeftBar {
+  z-index: 100;
   width: 200px;
   padding: 30px;
   background-color: #f2c301;
@@ -127,6 +146,8 @@ li {
   border-radius: 16px;
   text-align: center;
   top: 120px; /* 지정된 위치 */
+  /* left: 80px; */
+  /* margin: 0 80px; */
 }
 
 /* sticky=일반적인 문서의 흐름을 타다 지정위치에 닿으면 그 자리에 고정  */
@@ -216,14 +237,18 @@ li {
 
 .designBox {
   width: 90%;
-  min-width: 500px;
+  min-width: 360px;
   background-color: #dddddd;
   color: #212212;
   border-radius: 2rem;
-  padding: 2.5rem;
+  padding: 2rem 5rem;
   margin-bottom: 3rem;
   overflow: hidden;
   flex-wrap: wrap;
+}
+
+.designBox h3 {
+  margin-top: 1rem;
 }
 
 .designBox h3 a {
@@ -248,7 +273,7 @@ figure {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 20px;
-  padding: 10px;
+  padding: 7px;
 }
 
 .design-mean {
@@ -362,11 +387,11 @@ figure {
   gap: 3rem;
   flex-wrap: wrap;
   background-color: white;
-  padding: 2rem;
+  padding: 2rem 0;
   margin: 4rem auto;
   border-radius: 1rem;
   font-size: 30px;
-  min-width: 380px;
+  min-width: 250px;
 }
 
 .icon-textcon p {
@@ -387,6 +412,18 @@ figure {
 }
 
 @media screen and (max-width: 1200px) {
+  #DContainer {
+    width: 100%;
+    margin: 30px auto;
+    padding: 0;
+    display: flex;
+    gap: 0;
+  }
+
+  .designBox {
+    padding: 2rem;
+  }
+
   /* 칼라 */
   .design-mode.dr {
     grid-template-columns: repeat(1, 1fr);
@@ -398,7 +435,7 @@ figure {
   }
 
   .icon-pics {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .icon-pic {
@@ -408,5 +445,27 @@ figure {
   .color-meaning {
     display: flex;
     justify-content: center;
+  }
+
+  .sideLeftBar {
+    position: fixed;
+    right: -200px;
+    top: auto;
+    bottom: 100px;
+    transition: all 500ms cubic-bezier(1, 0, 0, 1);
+    z-index: 100;
+  }
+
+  .sideLeftBar.open {
+    right: 2rem;
+  }
+
+  .sidecontainer #trigger {
+    border: none;
+    background: none;
+    z-index: 500;
+    right: 30px;
+    bottom: -700px;
+    position: fixed;
   }
 }
